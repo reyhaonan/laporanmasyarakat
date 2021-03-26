@@ -11,6 +11,9 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+            .login {
+                font-size: 20px;
+            }
         </style>
     </head>
     <body>
@@ -19,10 +22,10 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Log in</a>
+                        <div class="login"> <a href="{{ route('login') }}">Masuk</a> </div>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Daftar</a>
                         @endif
                     @endauth
                 </div>
