@@ -9,23 +9,26 @@
 
         <style>
             body {
-                font-family: 'Nunito', sans-serif;
+                font-family: 'Poppins', sans-serif;
             }
             .adminbutton {
                 font-size: 18px;
                 margin-left: 480px;
                 width: 157px;
                 height: 34px;
+                border-radius: 4px;
             }
             .civilbutton {
                 font-size: 18px;
                 margin-left: 50px;
                 width: 157px;
                 height: 34px;
+                border-radius: 4px;
             }
             .text {
                 text-align: center;
                 margin-top: 250px;
+                font-weight: bold;
             }
         </style>
     </head>
