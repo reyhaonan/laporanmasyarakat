@@ -26,12 +26,23 @@
                 font-weight: 650;
                 color: white;
             }
-            .square {
+            .square1 {
                 position: absolute;
                 left: -100px;
                 bottom: -125px;
                 height: 400px;
                 width: 400px;
+                border: 8px solid #555;
+                border-radius: 65px;
+                fill: none;
+                border-color: #54526B;
+            }
+            .square2 {
+                position: absolute;
+                left: -100px;
+                bottom: -200px;
+                height: 400px;
+                width: 490px;
                 border: 8px solid #555;
                 border-radius: 65px;
                 fill: none;
@@ -45,7 +56,7 @@
                 height: 34px;
                 border: none;
                 border-radius: 4px;
-                background: #54526B;
+                background: #1d8fe0;
                 text-decoration: none;
                 font-weight: 500;
                 color: #EAEAEA;
@@ -67,6 +78,7 @@
                     @endauth
                 </div>
         </div>
-        <div class="square"></div>
+        <div class="square1"></div>
+        <div class="square2"></div>
     </body>
 </html>
