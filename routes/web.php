@@ -1,7 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,12 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/gate', function () {
-    // if(Auth)
+    if(Auth::user()->level == 'masyarakat')return redirect('/');
+    else if(Auth::user()->level == 'petugas')return redirect('/petugas');
+    // else if(Auth::user()->level == 'masyarakat')return redirect('/');
 });
 
 Auth::routes();
 
-Route::get('/masyarakat', [App\Http\Controllers\HomeController::class, 'index']);
+
+
+Route::get('/dashboard', [App\Http\Controllers\dashboardController::class, 'index']);
 
 
 
