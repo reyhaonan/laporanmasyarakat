@@ -27,6 +27,9 @@ Auth::routes();
 
 
 Route::get('/dashboard', [App\Http\Controllers\dashboardController::class, 'index']);
+Route::get('/dashboard/petugas', [App\Http\Controllers\dashboardController::class, 'petugas']);
+Route::get('/dashboard/masyarakat', [App\Http\Controllers\dashboardController::class, 'masyarakat']);
+Route::get('/dashboard/pengaduan', [App\Http\Controllers\dashboardController::class, 'pengaduan']);
 
 
 

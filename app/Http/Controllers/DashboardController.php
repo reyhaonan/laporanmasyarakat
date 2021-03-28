@@ -23,6 +23,18 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('masyarakatDashboard');
+        return view('dashboard');
+    }
+    public function petugas()
+    {
+        return view('dashboard');
+    }
+    public function masyarakat()
+    {
+        return view('dashboard');
+    }
+    public function pengaduan()
+    {
+        return view('dashboard');
     }
 }
