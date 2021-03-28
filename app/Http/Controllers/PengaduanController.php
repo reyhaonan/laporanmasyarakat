@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PengaduanController extends Controller
 {
@@ -36,10 +37,13 @@ class PengaduanController extends Controller
      */
     public function store(Request $request)
     {
+        $foto_url = $request->file('foto')->store('images');
         Pengaduan::create([
             'isi_laporan' => $request->isi_laporan,
             'id_pelapor' => Auth::id(),
+            'foto' => $foto_url,
         ]);
+        return redirect()->back();
     }
 
     /**
@@ -71,9 +75,9 @@ class PengaduanController extends Controller
      * @param  \App\Models\Pengaduan  $pengaduan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pengaduan $pengaduan)
+    public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
@@ -82,8 +86,10 @@ class PengaduanController extends Controller
      * @param  \App\Models\Pengaduan  $pengaduan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pengaduan $pengaduan)
+    public function destroy($id)
     {
-        //
+        Storage::delete(Pengaduan::find($id)->foto_url);
+        Pengaduan::find($id)->delete();
+        return redirect()->back();
     }
 }
