@@ -16,8 +16,14 @@
             .adminbutton {
                 margin-left: 480px;
             }
+            .adminbutton:hover {
+                background-color: #247BB9;
+            }
             .civilbutton {
                 margin-left: 50px;
+            }
+            .civilbutton:hover {
+                background-color: #247BB9;
             }
             .text {
                 font-family: 'Ubuntu', sans-serif;
