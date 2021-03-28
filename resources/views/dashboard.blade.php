@@ -83,13 +83,6 @@
             font-weight: bold;
             color: white;
         }
-        .text6 {
-            position: absolute;
-            left: 30px;
-            top: 430px;;
-            font-weight: bold;
-            color: white;
-        }
         .content {
             position: absolute;
             left: 350px;
@@ -172,10 +165,9 @@
             <p class="username">Selamat datang,<br><span id="logged-in-user"></span></p> <!-- logged-in-user buat nama adminnya btw -->
             <a href=""><p class="text1">Dashboard</p></a>
             <a href=""><p class="text2">Data Petugas</p></a>
-            <a href=""><p class="text3">Data Member</p></a>
+            <a href=""><p class="text3">Data Masyarakat</p></a>
             <a href=""><p class="text4">Data Pengaduan</p></a>
             <a href=""><p class="text5">Data Tanggapan</p></a>
-            <a href=""><p class="text6">Laporan</p></a>
         </div>
         <div class="content">Dashboard</div>
             <div class="pengaduan1">
