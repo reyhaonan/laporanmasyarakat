@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengaduan;
 use App\Models\Tanggapan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TanggapanController extends Controller
 {
@@ -35,7 +37,15 @@ class TanggapanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Tanggapan::create([
+            'tanggapan' => $request->tanggapan,
+            'id_petugas' => Auth::id(),
+            'id_pengaduan' => $request->id_pengaduan,
+        ]);
+        Pengaduan::find($request->id_pengaduan)->update([
+            'status' => 'selesai'
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -78,8 +88,9 @@ class TanggapanController extends Controller
      * @param  \App\Models\Tanggapan  $tanggapan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tanggapan $tanggapan)
+    public function destroy($id)
     {
-        //
+        Tanggapan::find($id)->delete();
+        return redirect()->back();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -27,7 +28,8 @@ class DashboardController extends Controller
     }
     public function petugas()
     {
-        return view('petugas');
+        $petugas = User::where('level','petugas')->paginate(20);
+        return view('petugas',["petugas" => $petugas]);
     }
     public function masyarakat()
     {
