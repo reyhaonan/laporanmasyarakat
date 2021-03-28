@@ -17,8 +17,8 @@
             position: absolute;
             left: -10px;
             top: -10px;
-            width: 330px;
-            height: 667px;
+            width: 23%;
+            height: 100%;
             background-color: #25252E;
         }
         .titletext {
@@ -104,7 +104,7 @@
             top: 150px;
             border-radius: 4px;
             background-color: #54526B;
-            width: 900px;
+            width: 66%;
             height: 150px;
         }
         .pengaduan1 h3 {
@@ -131,7 +131,7 @@
             top: 320px;
             border-radius: 4px;
             background-color: #54526B;
-            width: 900px;
+            width: 66%;
             height: 150px;
         }
         .pengaduan2 h3 {
@@ -151,6 +151,18 @@
             border: none;
             height: 30px;
             font-weight: 750;
+        }
+        .logout {
+            position: absolute;
+            right: 100px;
+        }
+        .logout button {
+            background-color: #FF6C6C;
+            height: 30px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            color: white;
         }
         </style>
 
@@ -176,5 +188,8 @@
                 <p>Apakah Hu Tao Physical Build efektif?</p>
                 <button type="button">Tanggapi</button>
             </div>
+        <div class="logout">
+            <button type="button">Log Out</button>
+        </div>
         </body>
 </html>
