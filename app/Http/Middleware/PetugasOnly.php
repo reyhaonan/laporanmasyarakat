@@ -17,9 +17,9 @@ class PetugasOnly
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->level != 'petugas') {
-            return redirect('home');
-        }
+        // if (Auth::user()->level != 'petugas') {
+        //     return redirect('/');
+        // }
 
         return $next($request);
     }

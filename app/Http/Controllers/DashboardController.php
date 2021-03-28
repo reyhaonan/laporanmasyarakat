@@ -27,14 +27,14 @@ class DashboardController extends Controller
     }
     public function petugas()
     {
-        return view('dashboard');
+        return view('petugas');
     }
     public function masyarakat()
     {
-        return view('dashboard');
+        return view('masyarakat');
     }
     public function pengaduan()
     {
-        return view('dashboard');
+        return view('pengaduan');
     }
 }
