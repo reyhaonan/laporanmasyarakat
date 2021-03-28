@@ -1,23 +1,35 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+        <title>Dashboard Pengaduan</title>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+        body {
+            background-color: #7A7777;
+            font-family: 'Ubuntu', sans-serif;
+        }
+        .shape {
+            overflow: hidden;
+            position: absolute;
+            left: -10px;
+            top: -10px;
+            width: 330px;
+            height: 667px;
+            background-color: #25252E;
+        }
+        .shape p {
+            margin-left: 70px;
+            margin-top: 55px;
+            font-weight: 750;
+            font-size: 25px;
+            color: white;
+        }
+        </style>
 
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+        <div class="shape"><p>PENGADUAN</p></div>
+        </body>
+</html>
