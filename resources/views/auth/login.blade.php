@@ -27,9 +27,16 @@
                 font-weight: 650;
                 color: white;
             }
+            .logintext {
+                font-family: 'Ubuntu', sans-serif;
+                text-align: center;
+                color: white;
+                font-weight: 650;
+                margin-top: 20px;
+            }
             .textbox{
                 text-align: center;
-                margin-top: 20px;
+                margin-top: 10px;
             }
             .emailtext{
                 font-family: 'Ubuntu', sans-serif;
@@ -54,11 +61,16 @@
                 height: 31px;
                 border: none;
                 border-radius: 4px;
-                background: #54526B;
+                background: #1d8fe0;
                 text-decoration: none;
                 font-weight: 500;
                 color: #EAEAEA;
                 margin-top: 10px;
+                transition-duration: 0.4s;
+                transition-duration: 0.4s;
+                text-decoration: none;
+                overflow: hidden;
+                cursor: pointer;
             }
             .buttontext {
                 font-family: 'Ubuntu', sans-serif;
@@ -86,6 +98,37 @@
                 color: #EAEAEA;
                 padding: 8px;
             }
+            .card-body {
+                position: absolute;
+                left: 530px;
+                top: 100px;
+                width: 300px;
+                height: 300px;
+                background-color: #54526B;
+                border-radius: 4px;
+            }
+            .square1 {
+                position: absolute;
+                left: -100px;
+                bottom: -125px;
+                height: 400px;
+                width: 400px;
+                border: 8px solid #555;
+                border-radius: 65px;
+                fill: none;
+                border-color: #54526B;
+            }
+            .square2 {
+                position: absolute;
+                left: -100px;
+                bottom: -200px;
+                height: 400px;
+                width: 490px;
+                border: 8px solid #555;
+                border-radius: 65px;
+                fill: none;
+                border-color: #54526B;
+            }
         </style>
     </head>
     <body>
@@ -93,9 +136,10 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="text">{{ __('Login') }}</div>
+                       
 
                         <div class="card-body">
+                        <div class="logintext">{{ __('Login') }}</div>
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
 
@@ -151,5 +195,7 @@
                 </div>
             </div>
         </div>
+        <div class="square1"></div>
+        <div class="square2"></div>
     </body>
 </html>
