@@ -23,9 +23,68 @@
             .text {
                 font-family: 'Ubuntu', sans-serif;
                 text-align: center;
-                margin-top: 250px;
+                margin-top: 200px;
                 font-weight: 650;
                 color: white;
+            }
+            .textbox{
+                text-align: center;
+                margin-top: 20px;
+            }
+            .emailtext{
+                font-family: 'Ubuntu', sans-serif;
+                text-align: center;
+                margin-top: 40px;
+                font-weight: 650;
+                color: white;
+            }
+            .emailtexttoo{
+                text-align: center;
+                margin-top: 20px;
+            }
+            .emailtextthree{
+                text-align: center;
+                margin-top: 10px;
+            }
+            .margin{
+                font-family: 'Ubuntu', sans-serif;
+                font-weight: 650;
+                font-size: 13px;
+                width: 88px;
+                height: 31px;
+                border: none;
+                border-radius: 4px;
+                background: #54526B;
+                text-decoration: none;
+                font-weight: 500;
+                color: #EAEAEA;
+                margin-top: 10px;
+            }
+            .buttontext {
+                font-family: 'Ubuntu', sans-serif;
+                font-size: 18px;
+                text-align: center;
+                width: 157px;
+                height: 34px;
+                border: none;
+                border-radius: 4px;
+                background: #54526B;
+                text-decoration: none;
+                font-weight: 500;
+                color: #EAEAEA;
+            }
+            .buttontexttoo {
+                font-family: 'Ubuntu', sans-serif;
+                font-size: 13px;
+                width: 157px;
+                height: 34px;
+                border: none;
+                border-radius: 4px;
+                background: #54526B;
+                text-decoration: none;
+                font-weight: 500;
+                color: #EAEAEA;
+                padding: 8px;
             }
         </style>
     </head>
@@ -34,16 +93,16 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">{{ __('Login') }}</div>
+                        <div class="text">{{ __('Login') }}</div>
 
                         <div class="card-body">
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
 
-                                <div class="form-group row">
-                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Alamat Email') }}</label>
+                                <div class="emailtext">
+                                    <label for="email" class="text">{{ __('Alamat Email') }}</label>
 
-                                    <div class="col-md-6">
+                                    <div class="textbox">
                                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                         @error('email')
@@ -54,10 +113,10 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Kata Sandi') }}</label>
+                                <div class="emailtexttoo">
+                                    <label for="password" class="text">{{ __('Kata Sandi') }}</label>
 
-                                    <div class="col-md-6">
+                                    <div class="textbox">
                                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                         @error('password')
@@ -68,30 +127,23 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <div class="emailtextthree">
                                     <div class="col-md-6 offset-md-4">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                            <label class="form-check-label" for="remember">
+                                            <label class="text" for="remember">
                                                 {{ __('Remember Me') }}
                                             </label>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="form-group row mb-0">
+                                <div class="emailtextthree">
                                     <div class="col-md-8 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="margin">
                                             {{ __('Login') }}
                                         </button>
-
-                                        @if (Route::has('password.request'))
-                                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                {{ __('Forgot Your Password?') }}
-                                            </a>
-                                        @endif
-                                    </div>
                                 </div>
                             </form>
                         </div>
