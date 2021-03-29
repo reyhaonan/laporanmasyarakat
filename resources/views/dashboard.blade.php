@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Dashboard Pengaduan</title>
-    <head>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
@@ -191,6 +191,12 @@
             font-size: 16px;
             color: white;
         }
+
+        .pengaduan1,.pengaduan2,.pengaduan3 input{
+            padding: 1rem .8rem;
+            margin: .5rem .2rem;
+        }
+
         .triangle-right {
             position: absolute;
             left: 30px;
@@ -228,26 +234,27 @@
             <a href="/dashboard/tanggapan"><p class="text5">Data Tanggapan</p></a>
         </div>
         <div class="content">Dashboard</div>
-            <div class="pengaduan1">
-                <h3> Pengaduan dari Person</h3><hr> <!-- nama hanya placeholder -->
-                <p>Pengaduan masyarakat terbaru akan muncul disini</p>
-                <button type="button">Lihat Foto</button>
-                <button type="button">Tanggapi</button>
             </div>
-            <div class="pengaduan2">
-                <h3> Pengaduan dari Person</h3><hr> <!-- nama hanya placeholder -->
-                <p>Pengaduan masyarakat terbaru akan muncul disini</p>
-                <button type="button">Lihat Foto</button>
-                <button type="button">Tanggapi</button>
-            </div>
-            <div class="pengaduan3">
-                <h3> Pengaduan dari Person</h3><hr> <!-- nama hanya placeholder -->
-                <p>Pengaduan masyarakat terbaru akan muncul disini</p>
-                <button type="button">Lihat Foto</button>
-                <button type="button">Tanggapi</button>
-            </div>
+            @php
+                $i = 1
+            @endphp
+            @foreach ($pengaduan as $item)
+                <div class="{{"pengaduan".$i}}">
+                    <h3> Pengaduan dari {{$item->user->nama}}</h3><hr> <!-- nama hanya placeholder -->
+                    <p>{{ $item->isi_laporan }}</p>
+                    <img src="{{ $item->foto }}" alt="" srcset="">
+                    <form action="/dashboard/tanggap" method="POST" id="tanggapan">@csrf</form>
+                    <input type="text" name="tanggapan" form="tanggapan" required>
+                    <input type="hidden" name="id_pengaduan" form="tanggapan" value="{{$item->id}}">
+                    <button type="submit" form="tanggapan">Tanggapi</button>
+                </div>
+                @php
+                    $i++
+                @endphp
+            @endforeach
         <div class="logout">
-            <button type="button">Log Out</button>
+            <form action="{{ route('logout') }}" method="post" id="logout">@csrf</form>
+            <button type="submit" form="logout">Log Out</button>
         </div>
         <div class="page">
             <a href="" class="triangle-left"></a><p>1</p><a href="" class="triangle-right"></a>
