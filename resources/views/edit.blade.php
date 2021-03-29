@@ -103,113 +103,68 @@
             font-weight: bold;
             color: white;
         }
-        table {
-            background-color: #54526B;
-            position: absolute;
-            top: 160px;
-            left: 350px;
-            border-radius: 4px;
-            text-align: center;
-            width: 66%;
-            border-collapse: collapse;
-            color: white;
-        }
-        th {
-            border: 5px solid #313040;
-            padding: 8px;
-        }
-        td {
-            border: 5px solid #313040;
-            border-radius: 10px;
-            padding: 5px;
-        }
-        .page {
-            position: absolute;
-            right: 150px;
-            top: 550px;
-            font-size: 16px;
-            color: white;
-        }
-        .triangle-right {
-            position: absolute;
-            left: 30px;
-            bottom: 10px;
-	        width: 0;
-	        height: 0;
-	        border-top: 15px solid transparent;
-	        border-left: 25px solid white;
-	        border-bottom: 15px solid transparent;
-            border-radius: 6px;
-        }
-        .triangle-left {
-            position: absolute;
-            right: 30px;
-            bottom: 10px;
-	        width: 0;
-	        height: 0;
-	        border-top: 15px solid transparent;
-	        border-right: 25px solid white;
-	        border-bottom: 15px solid transparent;
-            border-radius: 6px;
-        }
         form {
-            color: white;
             position: absolute;
+            top: 130px;
             left: 350px;
-            top: 120px;
         }
-        .textpassword {
+        .editnama {
+            color: white;
+            font-weight: bold;
+        }
+        .editUsername {
+            color: white;
+            font-weight: bold;
+        }
+        .editTelp {
+            color: white;
+            font-weight: bold;
+        }
+        .editNIK {
             position: absolute;
-            left: 340px;
-            top: -10px;
+            left: 400px;
+            top: 0px;
+            color: white;
+            font-weight: bold;
         }
-        .textname {
+        .editAlamat {
             position: absolute;
-            left: 83px;
-            top: -10px;
+            left: 400px;
+            top: 80px;
+            color: white;
+            font-weight: bold;
         }
-        .input {
-            position: absolute;
-            left: 695px;
-            top: 10px;
-        }
-        .submit {
-            width: 200px;
-            height: 30px;
-            background-color: #68DB65;
+        textarea {
+            background-color: #54526B;
             border: none;
             border-radius: 4px;
+            width: 346px;
+            height: 110px;
             color: white;
+            font-family: "Ubuntu", sans-serif;
+            font-weight: bold;
         }
-        .inputpass {
+        input {
             background-color: #54526B;
             border: none;
             border-radius: 4px;
             width: 346px;
             height: 30px;
+            color: white;
+            font-family: "Ubuntu", sans-serif;
+            font-weight: bold;
         }
-        .inputname {
-            background-color: #54526B;
-            border: none;
-            border-radius: 4px;
-            width: 249px;
-            height: 30px;
-        }
-        .edit {
+        .submit {
             background-color: #68DB65;
-            height: 30px;
             border: none;
             border-radius: 4px;
-            font-weight: bold;
-            color: white;
-        }
-        .delete {
-            background-color: #FF6C6C;
             height: 30px;
-            border: none;
-            border-radius: 4px;
-            font-weight: bold;
+            width: 120px;
             color: white;
+            font-weight: bold;
+            position: absolute;
+            top: 300px;
+            left: 100%;
         }
         </style>
     </head>
@@ -225,66 +180,36 @@
             <a href="/dashboard/pengaduan"><p class="text4">Data Pengaduan</p></a>
             <a href="/dashboard/tanggapan"><p class="text5">Data Tanggapan</p></a>
         </div>
-        <div class="content">Petugas</div>
-        <form>
-            <div class="textname">
-                <label>Nama Lengkap</label>
-                <input class="inputname" type="text">
-            </div>
-            <div class="textpassword">
-                <label>Password</label>
-                <input class="inputpass" type="text">
-            </div>
-            <div class="input">
-                <input class="submit" type="submit" value="Tambahkan">
-            </div>
-        </form>
-        <div class="table">
-            <table>
-            <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Password</th>
-                <th>Aksi</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Jarvis Dundragon</td>
-                <td>themostsecurepassword</td>
-                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Ramas Redwald</td>
-                <td>enteryourpassword</td>
-                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Runa Falone</td>
-                <td>thereisnoIinteam</td>
-                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Ramona Helton</td>
-                <td>icanthinkany</td>
-                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Kain Hayward</td>
-                <td>ranboo</td>
-                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
-            </tr>
-            </table>
-        </div>
+        <div class="content">Edit Data</div>
+            <form>
+                <div class="editnama">
+                    <p>Nama</p>
+                    <input type="text">
+                </div>
+                <div class="editUsername">
+                    <p>Username</p>
+                    <input type="text">
+                </div>
+                <div class="editTelp">
+                    <p>Nomor Telepon</p>
+                    <input type="text">
+                </div>
+                <div class="editNIK">
+                    <p>NIK</p>
+                    <input type="text">
+                </div>
+                <div class="editAlamat">
+                    <p>Alamat</p>
+                    <textarea rows="4" class="textpengaduan"></textarea>
+                </div>
+                <input class="submit" type="submit" value="Konfirmasi Edit">
+            </form>
         <div class="logout">
             <form action="{{ route('logout') }}" method="post" id="logout">@csrf</form>
             <button type="submit" form="logout">Log Out</button>
         </div>
         <div class="page">
-            <a href="" class="triangle-left"></a><p>1</p><a href="" class="triangle-right"></a>
+            <class="triangle-right"></a>
         </div>
         </body>
 </html>
