@@ -11,6 +11,7 @@
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
         body {
+                font-family:'Ubuntu', sans-serif;
                 background-color: #313040;
                 overflow: hidden;
             }
@@ -21,9 +22,8 @@
                 margin-left: 50px;
             }
             .text {
-                font-family: 'Ubuntu', sans-serif;
                 text-align: center;
-                margin-top: 50px;
+                margin-top: -80px;
                 font-weight: 650;
                 color: white;
             }
@@ -31,14 +31,14 @@
                 text-align: center;
                 margin-top: 20px;
             }
-            .usernametext{
+            .nametext{
                 font-family: 'Ubuntu', sans-serif;
                 text-align: center;
                 margin-top: 40px;
                 font-weight: 650;
                 color: white;
             }
-            .usernametexttoo{
+            .label{
                 font-family: 'Ubuntu', sans-serif;
                 text-align: center;
                 margin-top: 20px;
@@ -57,7 +57,7 @@
                 height: 31px;
                 border: none;
                 border-radius: 4px;
-                background: #54526B;
+                background: #1d8fe0;
                 text-decoration: none;
                 font-weight: 500;
                 color: #EAEAEA;
@@ -89,6 +89,37 @@
                 color: #EAEAEA;
                 padding: 8px;
             }
+            .square1 {
+                position: absolute;
+                left: -100px;
+                bottom: -125px;
+                height: 400px;
+                width: 400px;
+                border: 8px solid #555;
+                border-radius: 65px;
+                fill: none;
+                border-color: #54526B;
+            }
+            .square2 {
+                position: absolute;
+                left: -100px;
+                bottom: -200px;
+                height: 400px;
+                width: 490px;
+                border: 8px solid #555;
+                border-radius: 65px;
+                fill: none;
+                border-color: #54526B;
+            }
+            .card-body {
+                position: relative;
+                left: 530px;
+                top: 100px;
+                width: 300px;
+                height: 600px;
+                background-color: #54526B;
+                border-radius: 4px;
+            }
         </style>
     </head>
     <body>
@@ -96,83 +127,53 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="text">{{ __('Register') }}</div>
+                    <div class="card-body">
+                        <div class="text">{{ __('Daftar') }}</div>
 
-                        <div class="card-body">
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
 
-                                <div class="usernametext">
-                                    <label for="nama" class="col-md-4 col-form-label text-md-right">{{ __('Nama Lengkap') }}</label>
+                                <div class="nametext">
+                                    <label for="nama">{{ __('Nama Lengkap') }}</label>
 
                                     <div class="textbox">
-                                        <input id="nama" type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="nama" autofocus>
-
-                                        @error('nama')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                        <input id="nama" type="text" name="nama" value="{{ old('nama') }}" required autocomplete="nama">
                                     </div>
                                 </div>
 
-                                <div class="usernametexttoo">
-                                    <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+                                <div class="label">
+                                    <label for="username">{{ __('Username') }}</label>
 
                                     <div class="textbox">
                                         <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username">
-
-                                        @error('username')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
                                     </div>
                                 </div>
 
-                                <div class="usernametexttoo">
-                                    <label for="nik" class="col-md-4 col-form-label text-md-right">{{ __('NIK') }}</label>
+                                <div class="label">
+                                    <label for="nik">{{ __('NIK') }}</label>
 
                                     <div class="textbox">
                                         <input id="nik" type="nik" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik">
-
-                                        @error('username')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
                                     </div>
                                 </div>
 
-                                <div class="usernametexttoo">
+                                <div class="label">
                                     <label for="notelp" class="col-md-4 col-form-label text-md-right">{{ __('Nomor Telepon') }}</label>
 
                                     <div class="textbox">
                                         <input id="notelp" type="notelp" class="form-control @error('nik') is-invalid @enderror" name="notelp" value="{{ old('notelp') }}" required autocomplete="notelp">
-
-                                        @error('username')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
                                     </div>
                                 </div>
 
-                                <div class="usernametexttoo">
+                                <div class="label">
                                     <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                     <div class="textbox">
                                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
                                     </div>
                                 </div>
 
-                                <div class="usernametexttoo">
+                                <div class="label">
                                     <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Konfirmasi Password') }}</label>
 
                                     <div class="textbox">
@@ -181,7 +182,6 @@
                                 </div>
 
                                 <div class="usernametextthree">
-                                    <div class="col-md-6 offset-md-4">
                                         <button type="submit" class="margin">
                                             {{ __('Daftar') }}
                                         </button>
@@ -189,9 +189,12 @@
                                 </div>
                             </form>
                         </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="square1"></div>
+        <div class="square2"></div>
 </body>
 </html>
