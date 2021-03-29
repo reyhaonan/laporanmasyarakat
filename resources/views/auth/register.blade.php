@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Laporan masyarakat</title>
 
 
@@ -31,21 +31,21 @@
                 text-align: center;
                 margin-top: 20px;
             }
-            .emailtext{
+            .usernametext{
                 font-family: 'Ubuntu', sans-serif;
                 text-align: center;
                 margin-top: 40px;
                 font-weight: 650;
                 color: white;
             }
-            .emailtexttoo{
+            .usernametexttoo{
                 font-family: 'Ubuntu', sans-serif;
                 text-align: center;
                 margin-top: 20px;
                 font-weight: 650;
                 color: white
             }
-            .emailtextthree{
+            .usernametextthree{
                 text-align: center;
                 margin-top: 10px;
             }
@@ -101,28 +101,14 @@
                         <div class="card-body">
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
-                
-                                <div class="emailtext">
-                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Lengkap') }}</label>
+
+                                <div class="usernametext">
+                                    <label for="nama" class="col-md-4 col-form-label text-md-right">{{ __('Nama Lengkap') }}</label>
 
                                     <div class="textbox">
-                                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        <input id="nama" type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="nama" autofocus>
 
-                                        @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                
-                                <div class="emailtexttoo">
-                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Alamat Email') }}</label>
-
-                                    <div class="textbox">
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                        @error('email')
+                                        @error('nama')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -130,13 +116,27 @@
                                     </div>
                                 </div>
 
-                                <div class="emailtexttoo">
+                                <div class="usernametexttoo">
+                                    <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+
+                                    <div class="textbox">
+                                        <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username">
+
+                                        @error('username')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="usernametexttoo">
                                     <label for="nik" class="col-md-4 col-form-label text-md-right">{{ __('NIK') }}</label>
 
                                     <div class="textbox">
                                         <input id="nik" type="nik" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik">
 
-                                        @error('email')
+                                        @error('username')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -144,13 +144,13 @@
                                     </div>
                                 </div>
 
-                                <div class="emailtexttoo">
+                                <div class="usernametexttoo">
                                     <label for="notelp" class="col-md-4 col-form-label text-md-right">{{ __('Nomor Telepon') }}</label>
 
                                     <div class="textbox">
                                         <input id="notelp" type="notelp" class="form-control @error('nik') is-invalid @enderror" name="notelp" value="{{ old('notelp') }}" required autocomplete="notelp">
 
-                                        @error('email')
+                                        @error('username')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -158,7 +158,7 @@
                                     </div>
                                 </div>
 
-                                <div class="emailtexttoo">
+                                <div class="usernametexttoo">
                                     <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                     <div class="textbox">
@@ -172,7 +172,7 @@
                                     </div>
                                 </div>
 
-                                <div class="emailtexttoo">
+                                <div class="usernametexttoo">
                                     <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Konfirmasi Password') }}</label>
 
                                     <div class="textbox">
@@ -180,7 +180,7 @@
                                     </div>
                                 </div>
 
-                                <div class="emailtextthree">
+                                <div class="usernametextthree">
                                     <div class="col-md-6 offset-md-4">
                                         <button type="submit" class="margin">
                                             {{ __('Daftar') }}

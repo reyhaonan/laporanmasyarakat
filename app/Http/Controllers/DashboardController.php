@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengaduan;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class DashboardController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -24,7 +25,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $pengaduan = Pengaduan::where('status','proses')->orderBy('created_at','asc')->take(2)->get();
+        return view('dashboard',['pengaduan' => $pengaduan]);
     }
     public function petugas()
     {

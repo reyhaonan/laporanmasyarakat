@@ -244,7 +244,8 @@
             </table>
         </div>
         <div class="logout">
-            <button type="button">Log Out</button>
+            <form action="{{ route('logout') }}" method="post" id="logout">@csrf</form>
+            <button type="submit" form="logout">Log Out</button>
         </div>
         <div class="page">
             <a href="" class="triangle-left"></a><p>1</p><a href="" class="triangle-right"></a>

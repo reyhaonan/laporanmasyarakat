@@ -38,18 +38,18 @@
                 text-align: center;
                 margin-top: 10px;
             }
-            .emailtext{
+            .usernametext{
                 font-family: 'Ubuntu', sans-serif;
                 text-align: center;
                 margin-top: 40px;
                 font-weight: 650;
                 color: white;
             }
-            .emailtexttoo{
+            .usernametexttoo{
                 text-align: center;
                 margin-top: 20px;
             }
-            .emailtextthree{
+            .usernametextthree{
                 text-align: center;
                 margin-top: 10px;
             }
@@ -136,20 +136,19 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                       
 
                         <div class="card-body">
                         <div class="logintext">{{ __('Login') }}</div>
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
 
-                                <div class="emailtext">
-                                    <label for="email" class="text">{{ __('Alamat Email') }}</label>
+                                <div class="usernametext">
+                                    <label for="username" class="text">{{ __('Username') }}</label>
 
                                     <div class="textbox">
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
-                                        @error('email')
+                                        @error('username')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -157,7 +156,7 @@
                                     </div>
                                 </div>
 
-                                <div class="emailtexttoo">
+                                <div class="usernametexttoo">
                                     <label for="password" class="text">{{ __('Kata Sandi') }}</label>
 
                                     <div class="textbox">
@@ -171,7 +170,7 @@
                                     </div>
                                 </div>
 
-                                <div class="emailtextthree">
+                                <div class="usernametextthree">
                                     <div class="col-md-6 offset-md-4">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -183,7 +182,7 @@
                                     </div>
                                 </div>
 
-                                <div class="emailtextthree">
+                                <div class="usernametextthree">
                                     <div class="col-md-8 offset-md-4">
                                         <button type="submit" class="margin">
                                             {{ __('Login') }}

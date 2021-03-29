@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 Route::get('/gate', function () {
     if(Auth::user()->level == 'masyarakat')return redirect('/');
-    else if(Auth::user()->level == 'petugas')return redirect('/petugas');
+    else if(Auth::user()->level == 'petugas')return redirect('/dashboard');
     // else if(Auth::user()->level == 'masyarakat')return redirect('/');
 });
 
@@ -30,6 +30,7 @@ Route::middleware(['petugas'])->group(function () {
     Route::get('/dashboard/petugas', [App\Http\Controllers\dashboardController::class, 'petugas']);
     Route::get('/dashboard/masyarakat', [App\Http\Controllers\dashboardController::class, 'masyarakat']);
     Route::get('/dashboard/pengaduan', [App\Http\Controllers\dashboardController::class, 'pengaduan']);
+    Route::get('/dashboard/tanggapan', [App\Http\Controllers\dashboardController::class, 'tanggapan']);
 });
 
 
