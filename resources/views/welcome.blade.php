@@ -7,6 +7,7 @@
         <title>Laporan masyarakat</title>
         <style>
         body {
+            overflow: hidden;
             background-color: #313040;
             font-family: 'Ubuntu', sans-serif;
         }
@@ -60,8 +61,42 @@
             color: white;
         }
         img {
-            align: center;
+            position: absolute;
+            top: 26%;
+            left: 45%;
+            height: 30%;
         }
+        h2 {
+            margin-top: 23%;
+            color: white;
+            text-align: center;
+        }
+        .desc {
+            color: white;
+            text-align: center;
+        }
+        .square1 {
+            position: absolute;
+            left: -100px;
+            bottom: -125px;
+            height: 400px;
+            width: 370px;
+            border: 8px solid #555;
+            border-radius: 65px;
+            fill: none;
+            border-color: #54526B;
+        }
+        .square2 {
+            position: absolute;
+            left: -100px;
+            bottom: -200px;
+            height: 400px;
+            width: 450px;
+            border: 8px solid #555;
+            border-radius: 65px;
+            fill: none;
+            border-color: #54526B;
+            }
         </style>
     </head>
     <body>
@@ -72,11 +107,15 @@
 			<li><a href="">Daftar Pengaduan</a></li>
 		</ul>
         <div class="signin">
-            <button type="button">Daftar</button>
+            <button type="button" href="">Daftar</button>
         </div>
         <div class="login">
-            <button type="button">Masuk</button>
+            <button type="button" href="">Masuk</button>
         </div>
         <img src="logo.png">
+        <h2>Aplikasi Pengaduan<br>SMK NEGERI 2 PURWAKARTA</h2>
+        <p class="desc">Silakan sampaikan keluhan anda dan kami akan melayani anda dengan sepenuh hati</p>
+        <div class="square1"></div>
+        <div class="square2"></div>
     </body>
 </html>
