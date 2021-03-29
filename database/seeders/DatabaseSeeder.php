@@ -16,12 +16,23 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        return User::create([
+        User::create([
             'nama' => 'asas',
             'username' => 'asas',
-            'alamat' => 'asas',
-            'nik' => 'nik',
+            'alamat' => 'asas barat',
+            'nik' => '09089867',
+            'notelp' => '08212314',
+            'level' => 'petugas',
             'password' => Hash::make('asas'),
+        ]);
+        User::create([
+            'nama' => 'usus',
+            'username' => 'usus',
+            'alamat' => 'usus barat',
+            'nik' => '09089867',
+            'notelp' => '08212314',
+            'level' => 'masyarakat',
+            'password' => Hash::make('usus'),
         ]);
     }
 }

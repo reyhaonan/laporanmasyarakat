@@ -31,6 +31,8 @@ Route::middleware(['petugas'])->group(function () {
     Route::get('/dashboard/masyarakat', [App\Http\Controllers\dashboardController::class, 'masyarakat']);
     Route::get('/dashboard/pengaduan', [App\Http\Controllers\dashboardController::class, 'pengaduan']);
     Route::get('/dashboard/tanggapan', [App\Http\Controllers\dashboardController::class, 'tanggapan']);
+
+    Route::post('/dashboard/tanggap',[App\Http\Controllers\TanggapanController::class, 'store']);
 });
 
 

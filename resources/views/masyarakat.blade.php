@@ -190,57 +190,19 @@
                 <th>Nama</th>
                 <th>Username</th>
                 <th>Nomor Telepon</th>
-                <th>Password</th>
+                <th>Alamat</th>
                 <th>Aksi</th>
             </tr>
-            <tr>
-                <td>0000000000</td>
-                <td>Gorstag Van Hyden</td>
-                <td>Gorstag</td>
-                <td>0987654321</td>
-                <td>thisisaplaceholder</td>
-                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td>0000000000</td>
-                <td>Liliana Gresser</td>
-                <td>Lily</td>
-                <td>0987654321</td>
-                <td>thisisaplaceholder</td>
-                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td>0000000000</td>
-                <td>Waller Meyer</td>
-                <td>BruceWayne</td>
-                <td>0987654321</td>
-                <td>thisisaplaceholder</td>
-                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td>0000000000</td>
-                <td>Grisel Scholz</td>
-                <td>Gorstag</td>
-                <td>0987654321</td>
-                <td>thisisaplaceholder</td>
-                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td>0000000000</td>
-                <td>Nikita Nihachu</td>
-                <td>Nihanchu</td>
-                <td>0987654321</td>
-                <td>thisisaplaceholder</td>
-                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td>0000000000</td>
-                <td>Will Gold</td>
-                <td>WilburSoot</td>
-                <td>0987654321</td>
-                <td>thisisaplaceholder</td>
-                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
-            </tr>
+            @foreach ($masyarakat as $item)
+                <tr>
+                    <td>{{$item->nik}}</td>
+                    <td>{{$item->nama}}</td>
+                    <td>{{$item->username}}</td>
+                    <td>{{$item->notelp}}</td>
+                    <td>{{$item->alamat}}</td>
+                    <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
+                </tr>
+            @endforeach
             </table>
         </div>
         <div class="logout">
@@ -248,7 +210,7 @@
             <button type="submit" form="logout">Log Out</button>
         </div>
         <div class="page">
-            <a href="" class="triangle-left"></a><p>1</p><a href="" class="triangle-right"></a>
+            <a href="{{ $masyarakat->currentPage() == 1? '': '/dashboard/masyarakat?page='.($masyarakat->currentPage() - 1) }}" class="triangle-left"></a><p>{{$masyarakat->currentPage()}}</p><a href="{{ $masyarakat->currentPage() == $masyarakat->lastPage()?'':'/dashboard/masyarakat?page='.($masyarakat->currentPage() + 1) }}" class="triangle-right"></a>
         </div>
         </body>
 </html>

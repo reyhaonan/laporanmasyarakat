@@ -164,6 +164,13 @@
                                         <input id="notelp" type="notelp" class="form-control @error('nik') is-invalid @enderror" name="notelp" value="{{ old('notelp') }}" required autocomplete="notelp">
                                     </div>
                                 </div>
+                                <div class="label">
+                                    <label for="alamat" class="col-md-4 col-form-label text-md-right">{{ __('Alamat') }}</label>
+
+                                    <div class="textbox">
+                                        <input id="alamat" type="alamat" class="form-control @error('nik') is-invalid @enderror" name="alamat" value="{{ old('alamat') }}" required autocomplete="alamat">
+                                    </div>
+                                </div>
 
                                 <div class="label">
                                     <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>

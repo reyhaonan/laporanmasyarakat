@@ -37,7 +37,7 @@
             left: 90%;
             margin-top: -45px;
         }
-        .login button {
+        .login a {
             background-color: #68DB65;
             height: 30px;
             width: 100px;
@@ -45,14 +45,18 @@
             border-radius: 4px;
             font-weight: bold;
             color: white;
+            text-decoration: none;
+            padding: 5px 12px;
         }
         .signin {
             position: absolute;
             left: 80%;
             margin-top: -45px;
         }
-        .signin button {
+        .signin a {
             background-color: #68DB65;
+            text-decoration: none;
+            padding: 5px 12px;
             height: 30px;
             width: 100px;
             border: none;
@@ -97,24 +101,53 @@
             fill: none;
             border-color: #54526B;
             }
+
+            .logout button{
+                background-color: #e75353;
+                text-decoration: none;
+                padding: 5px 12px;
+                height: 30px;
+                width: 100px;
+                border: none;
+                border-radius: 4px;
+                font-weight: bold;
+                color: white;
+            }
+
+            .ajukan{
+                background-color: #e0e0e0;
+                text-decoration: none;
+                padding: 8px 12px;
+                height: 30px;
+                width: 100px;
+                border: none;
+                border-radius: 4px;
+                font-weight: bold;
+                color: black;
+                margin-left: 45%
+            }
         </style>
     </head>
     <body>
         <p class="titletext">Pengaduan Masyarakat</p>
-        <ul>
-			<li><a href="">Home</a></li>
-			<li><a href="">Tentang Aplikasi</a></li>
-			<li><a href="">Daftar Pengaduan</a></li>
-		</ul>
-        <div class="signin">
-            <button type="button" href="">Daftar</button>
-        </div>
-        <div class="login">
-            <button type="button" href="">Masuk</button>
-        </div>
+        @auth()
+            <div class="login logout">
+                <form action="{{ route('logout') }}" method="post" id="logout">@csrf</form>
+                <button type="submit" form="logout">Log Out</button>
+            </div>
+        @endauth
+        @guest
+            <div class="signin">
+                <a type="a" href="/register">Daftar</a>
+            </div>
+            <div class="login">
+                <a type="a" href="/login">Masuk</a>
+            </div>
+        @endguest
         <img src="logo.png">
         <h2>Aplikasi Pengaduan<br>SMK NEGERI 2 PURWAKARTA</h2>
         <p class="desc">Silakan sampaikan keluhan anda dan kami akan melayani anda dengan sepenuh hati</p>
+        <a href="{{ Auth::check()? '/lapor': 'login' }}" class="ajukan">Ajukan Pengaduan</a>
         <div class="square1"></div>
         <div class="square2"></div>
     </body>
