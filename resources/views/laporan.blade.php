@@ -97,7 +97,62 @@
             font-weight: bold;
             color: white;
         }
+        .formlaporan {
+            margin-left: 30%;
+            color: white;
+        }
+        .formlaporan p {
+            position: absolute;
+            left: 600px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .textpengaduan {
+            width: 400px;
+            height: 75px;
+            background: #54526B;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-family: "Ubuntu", sans-serif;
+        }
+        table{
+            position: absolute;
+            top: 120px;
+        }
+        td {
+            padding: 10px;
+        }
+        .preview {
+            position: absolute;
+            top: 150px;
+        }
+        .submit {
+            background-color: #68DB65;
+            border: none;
+            border-radius: 4px;
+            height: 30px;
+            width: 120px;
+            color: white;
+            font-weight: bold;
+            position: absolute;
+            top: 400px;
+            left: 47%;
+        }
+        
         </style>
+        <script type="text/javascript">
+
+        function PreviewImage() {
+            var oFReader = new FileReader();
+            oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+
+            oFReader.onload = function (oFREvent) {
+                document.getElementById("uploadPreview").src = oFREvent.target.result;
+            };
+        };
+
+</script>
     </head>
     <body>
         <p class="titletext">Pengaduan Masyarakat</p>
@@ -107,11 +162,22 @@
         <div class="login">
             <button type="button" href="">Masuk</button>
         </div>
-        <img src="logo.png">
-        <h2>Aplikasi Pengaduan<br>SMK NEGERI 2 PURWAKARTA</h2>
-        <p class="desc">Silakan sampaikan keluhan anda dan kami akan melayani anda dengan sepenuh hati</p>
-        <div class="pengajuan">
-            <button type="button" href="">Ajukan Pengaduan</button>
+        <div class="formlaporan">
+                <p>AJUKAN PENGADUAN</p>
+                <table>
+                <tr>
+                    <td>Pengaduan</label></td>
+                    <td><textarea rows="4" class="textpengaduan"></textarea></td>
+                </tr>
+                <tr>
+                    <td>Foto</label></td>
+                    <td><input id="uploadImage" type="file" name="myPhoto" onchange="PreviewImage();"></td>
+                </tr>
+                <tr>
+                    <td><img class="preview" id="uploadPreview" style="width: 100px; height: 100px;" /></td>
+                </tr>
+                </table>
+                <input class="submit" type="submit" value="Ajukan">
         </div>
         <div class="square1"></div>
         <div class="square2"></div>
