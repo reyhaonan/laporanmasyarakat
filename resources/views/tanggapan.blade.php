@@ -91,60 +91,6 @@
             color: white;
             font-size: 30px;
         }
-        .pengaduan1 {
-            position: absolute;
-            left: 350px;
-            top: 150px;
-            border-radius: 4px;
-            background-color: #54526B;
-            width: 66%;
-            height: 150px;
-        }
-        .pengaduan1 h3 {
-            color: white;
-            margin-left: 20px;
-            margin-top: 10px;
-        }
-        .pengaduan1 p {
-            color: white;
-            margin-left: 20px;
-        }
-        .pengaduan1 button {
-            margin-left: 20px;
-            margin-top: 15px;
-            background-color: #68DB65;
-            border-radius: 4px;
-            border: none;
-            height: 30px;
-            font-weight: 750;
-        }
-        .pengaduan2 {
-            position: absolute;
-            left: 350px;
-            top: 320px;
-            border-radius: 4px;
-            background-color: #54526B;
-            width: 66%;
-            height: 150px;
-        }
-        .pengaduan2 h3 {
-            color: white;
-            margin-left: 20px;
-            margin-top: 10px;
-        }
-        .pengaduan2 p {
-            color: white;
-            margin-left: 20px;
-        }
-        .pengaduan2 button {
-            margin-left: 20px;
-            margin-top: 15px;
-            background-color: #68DB65;
-            border-radius: 4px;
-            border: none;
-            height: 30px;
-            font-weight: 750;
-        }
         .logout {
             position: absolute;
             right: 100px;
@@ -156,6 +102,55 @@
             border-radius: 4px;
             font-weight: bold;
             color: white;
+        }
+        table {
+            background-color: #54526B;
+            position: absolute;
+            top: 130px;
+            left: 350px;
+            border-radius: 4px;
+            text-align: center;
+            width: 66%;
+            border-collapse: collapse;
+            color: white;
+        }
+        th {
+            border: 5px solid #313040;
+            padding: 8px;
+        }
+        td {
+            border: 5px solid #313040;
+            border-radius: 10px;
+            padding: 5px;
+        }
+        .page {
+            position: absolute;
+            right: 150px;
+            top: 550px;
+            font-size: 16px;
+            color: white;
+        }
+        .triangle-right {
+            position: absolute;
+            left: 30px;
+            bottom: 10px;
+	        width: 0;
+	        height: 0;
+	        border-top: 15px solid transparent;
+	        border-left: 25px solid white;
+	        border-bottom: 15px solid transparent;
+            border-radius: 6px;
+        }
+        .triangle-left {
+            position: absolute;
+            right: 30px;
+            bottom: 10px;
+	        width: 0;
+	        height: 0;
+	        border-top: 15px solid transparent;
+	        border-right: 25px solid white;
+	        border-bottom: 15px solid transparent;
+            border-radius: 6px;
         }
         </style>
 
@@ -169,21 +164,65 @@
             <a href=""><p class="text4">Data Pengaduan</p></a>
             <a href=""><p class="text5">Data Tanggapan</p></a>
         </div>
-        <div class="content">Dashboard</div>
-            <div class="pengaduan1">
-                <h3> Pengaduan dari Person</h3><hr> <!-- nama hanya placeholder -->
-                <p>Pengaduan masyarakat terbaru akan muncul disini</p>
-                <button type="button">Lihat Foto</button>
-                <button type="button">Tanggapi</button>
-            </div>
-            <div class="pengaduan2">
-                <h3> Pengaduan dari Person</h3><hr> <!-- nama hanya placeholder -->
-                <p>Pengaduan masyarakat terbaru akan muncul disini</p>
-                <button type="button">Lihat Foto</button>
-                <button type="button">Tanggapi</button>
-            </div>
+        <div class="content">Tanggapan</div>
+        <div class="table">
+            <table>
+            <tr>
+                <th>Username</th>
+                <th>Pengaduan</th>
+                <th>Tanggapan</th>
+                <th>Petugas</th>
+                <th>Tgl Tanggapan</th>
+            </tr>
+            <tr>
+                <td>Placeholder Nama</td>
+                <td>Placeholder pengaduan masyarakat</td>
+                <td>Placeholder tanggapan petugas</td>
+                <td>Nama Petugas</td>
+                <td>DD / MM / YYYY</td>
+            </tr>
+            <tr>
+                <td>Placeholder Nama</td>
+                <td>Placeholder pengaduan masyarakat</td>
+                <td>Placeholder tanggapan petugas</td>
+                <td>Nama Petugas</td>
+                <td>DD / MM / YYYY</td>
+            </tr>
+            <tr>
+                <td>Placeholder Nama</td>
+                <td>Placeholder pengaduan masyarakat</td>
+                <td>Placeholder tanggapan petugas</td>
+                <td>Nama Petugas</td>
+                <td>DD / MM / YYYY</td>
+            </tr>
+            <tr>
+                <td>Placeholder Nama</td>
+                <td>Placeholder pengaduan masyarakat</td>
+                <td>Placeholder tanggapan petugas</td>
+                <td>Nama Petugas</td>
+                <td>DD / MM / YYYY</td>
+            </tr>
+            <tr>
+                <td>Placeholder Nama</td>
+                <td>Placeholder pengaduan masyarakat</td>
+                <td>Placeholder tanggapan petugas</td>
+                <td>Nama Petugas</td>
+                <td>DD / MM / YYYY</td>
+            </tr>
+            <tr>
+                <td>Placeholder Nama</td>
+                <td>Placeholder pengaduan masyarakat</td>
+                <td>Placeholder tanggapan petugas</td>
+                <td>Nama Petugas</td>
+                <td>DD / MM / YYYY</td>
+            </tr>
+            </table>
+        </div>
         <div class="logout">
             <button type="button">Log Out</button>
+        </div>
+        <div class="page">
+            <a href="" class="triangle-left"></a><p>1</p><a href="" class="triangle-right"></a>
         </div>
         </body>
 </html>
