@@ -175,6 +175,7 @@
                 <th>Tanggapan</th>
                 <th>Petugas</th>
                 <th>Tgl Tanggapan</th>
+                <th>Aksi</th>
             </tr>
             <tr>
                 <td>Placeholder Nama</td>
@@ -182,6 +183,7 @@
                 <td>Placeholder tanggapan petugas</td>
                 <td>Nama Petugas</td>
                 <td>DD / MM / YYYY</td>
+                <td><button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td>Placeholder Nama</td>
@@ -189,6 +191,7 @@
                 <td>Placeholder tanggapan petugas</td>
                 <td>Nama Petugas</td>
                 <td>DD / MM / YYYY</td>
+                <td><button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td>Placeholder Nama</td>
@@ -196,6 +199,7 @@
                 <td>Placeholder tanggapan petugas</td>
                 <td>Nama Petugas</td>
                 <td>DD / MM / YYYY</td>
+                <td><button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td>Placeholder Nama</td>
@@ -203,6 +207,7 @@
                 <td>Placeholder tanggapan petugas</td>
                 <td>Nama Petugas</td>
                 <td>DD / MM / YYYY</td>
+                <td><button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td>Placeholder Nama</td>
@@ -210,6 +215,7 @@
                 <td>Placeholder tanggapan petugas</td>
                 <td>Nama Petugas</td>
                 <td>DD / MM / YYYY</td>
+                <td><button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td>Placeholder Nama</td>
@@ -217,6 +223,7 @@
                 <td>Placeholder tanggapan petugas</td>
                 <td>Nama Petugas</td>
                 <td>DD / MM / YYYY</td>
+                <td><button type="button" class="delete">Hapus</button></td>
             </tr>
             </table>
         </div>

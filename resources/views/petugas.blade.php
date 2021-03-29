@@ -173,31 +173,37 @@
                 <th>No</th>
                 <th>Nama</th>
                 <th>Password</th>
+                <th>Aksi</th>
             </tr>
             <tr>
                 <td>1</td>
                 <td>Jarvis Dundragon</td>
                 <td>themostsecurepassword</td>
+                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td>2</td>
                 <td>Ramas Redwald</td>
                 <td>enteryourpassword</td>
+                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td>3</td>
                 <td>Runa Falone</td>
                 <td>thereisnoIinteam</td>
+                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td>4</td>
                 <td>Ramona Helton</td>
                 <td>icanthinkany</td>
+                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td>5</td>
                 <td>Kain Hayward</td>
                 <td>ranboo</td>
+                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
             </tr>
             </table>
         </div>
