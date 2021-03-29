@@ -171,13 +171,15 @@
         </div>
         <div class="content">Dashboard</div>
             <div class="pengaduan1">
-                <h3> Pengaduan dari Andrius</h3><hr> <!-- nama hanya placeholder -->
-                <p>Tetangga saya main Genshin party-nya full bintang 5, haruskah saya top-up?</p>
+                <h3> Pengaduan dari Person</h3><hr> <!-- nama hanya placeholder -->
+                <p>Pengaduan masyarakat terbaru akan muncul disini</p>
+                <button type="button">Lihat Foto</button>
                 <button type="button">Tanggapi</button>
             </div>
             <div class="pengaduan2">
-                <h3> Pengaduan dari Hu Tao</h3><hr> <!-- nama hanya placeholder -->
-                <p>Apakah Hu Tao Physical Build efektif?</p>
+                <h3> Pengaduan dari Person</h3><hr> <!-- nama hanya placeholder -->
+                <p>Pengaduan masyarakat terbaru akan muncul disini</p>
+                <button type="button">Lihat Foto</button>
                 <button type="button">Tanggapi</button>
             </div>
         <div class="logout">
