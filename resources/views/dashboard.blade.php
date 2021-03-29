@@ -41,7 +41,7 @@
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
-            background-image: url('http://placehold.it/400x200');
+            background-color: #979797
         }
         .username {
             color: white;
@@ -91,15 +91,7 @@
             color: white;
             font-size: 30px;
         }
-        .pengaduan1 {
-            position: absolute;
-            left: 350px;
-            top: 120px;
-            border-radius: 4px;
-            background-color: #54526B;
-            width: 66%;
-            height: 150px;
-        }
+
         .pengaduan1 h3 {
             color: white;
             margin-left: 20px;
@@ -118,15 +110,7 @@
             height: 30px;
             font-weight: 750;
         }
-        .pengaduan2 {
-            position: absolute;
-            left: 350px;
-            top: 275px;
-            border-radius: 4px;
-            background-color: #54526B;
-            width: 66%;
-            height: 150px;
-        }
+
         .pengaduan2 h3 {
             color: white;
             margin-left: 20px;
@@ -145,14 +129,14 @@
             height: 30px;
             font-weight: 750;
         }
-        .pengaduan3 {
-            position: absolute;
+        .pengaduan1, .pengaduan2, .pengaduan3{
+            position: relative;
             left: 350px;
-            top: 430px;
+            top: 120px;
             border-radius: 4px;
             background-color: #54526B;
             width: 66%;
-            height: 150px;
+            box-sizing: border-box
         }
         .pengaduan3 h3 {
             color: white;
@@ -175,6 +159,7 @@
         .logout {
             position: absolute;
             right: 100px;
+            top: 20px
         }
         .logout button {
             background-color: #FF6C6C;
@@ -192,9 +177,12 @@
             color: white;
         }
 
-        .pengaduan1,.pengaduan2,.pengaduan3 input{
+        .pengaduan1 input,.pengaduan2 input,.pengaduan3 input{
             padding: 1rem .8rem;
             margin: .5rem .2rem;
+        }
+        .pengaduan1 img,.pengaduan2 img,.pengaduan3 img{
+            width: 200px;
         }
 
         .triangle-right {
@@ -225,8 +213,8 @@
 
         <div class="shape"><p class="titletext">ADMINISTRATOR</p>
         <hr>
-            <div class="adminpic"></div>
-            <p class="username">Selamat datang,<br><span id="logged-in-user"></span></p> <!-- logged-in-user buat nama adminnya btw -->
+            <div class="adminpic" style="{{'background-image:url('.asset('storage/'.Auth::user()->foto).')'}}"></div>
+            <p class="username">Selamat datang,<br><span id="logged-in-user">{{Auth::user()->nama}}</span></p> <!-- logged-in-user buat nama adminnya btw -->
             <a href="/dashboard"><p class="text1">Dashboard</p></a>
             <a href="/dashboard/petugas"><p class="text2">Data Petugas</p></a>
             <a href="/dashboard/masyarakat"><p class="text3">Data Masyarakat</p></a>
@@ -241,12 +229,12 @@
             @foreach ($pengaduan as $item)
                 <div class="{{"pengaduan".$i}}">
                     <h3> Pengaduan dari {{$item->user->nama}}</h3><hr> <!-- nama hanya placeholder -->
+                    <img src="{{ asset('storage/'.$item->foto) }}">
                     <p>{{ $item->isi_laporan }}</p>
-                    <img src="{{ $item->foto }}" alt="" srcset="">
-                    <form action="/dashboard/tanggap" method="POST" id="tanggapan">@csrf</form>
-                    <input type="text" name="tanggapan" form="tanggapan" required>
-                    <input type="hidden" name="id_pengaduan" form="tanggapan" value="{{$item->id}}">
-                    <button type="submit" form="tanggapan">Tanggapi</button>
+                    <form action="/dashboard/tanggap" method="POST" id="{{'tanggapan'.$item->id}}">@csrf</form>
+                    <input type="text" name="tanggapan" form="{{'tanggapan'.$item->id}}" required>
+                    <input type="hidden" name="id_pengaduan" form="{{'tanggapan'.$item->id}}" value="{{$item->id}}">
+                    <button type="submit" form="{{'tanggapan'.$item->id}}">Tanggapi</button>
                 </div>
                 @php
                     $i++
@@ -255,9 +243,6 @@
         <div class="logout">
             <form action="{{ route('logout') }}" method="post" id="logout">@csrf</form>
             <button type="submit" form="logout">Log Out</button>
-        </div>
-        <div class="page">
-            <a href="" class="triangle-left"></a><p>1</p><a href="" class="triangle-right"></a>
         </div>
         </body>
 </html>

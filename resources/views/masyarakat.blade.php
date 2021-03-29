@@ -175,7 +175,7 @@
         <div class="shape"><p class="titletext">ADMINISTRATOR</p>
         <hr>
             <div class="adminpic"></div>
-            <p class="username">Selamat datang,<br><span id="logged-in-user"></span></p> <!-- logged-in-user buat nama adminnya btw -->
+            <p class="username">Selamat datang,<br><span id="logged-in-user">{{Auth::user()->nama}}</span></p> <!-- logged-in-user buat nama adminnya btw -->
             <a href="/dashboard"><p class="text1">Dashboard</p></a>
             <a href="/dashboard/petugas"><p class="text2">Data Petugas</p></a>
             <a href="/dashboard/masyarakat"><p class="text3">Data Masyarakat</p></a>
@@ -200,7 +200,8 @@
                     <td>{{$item->username}}</td>
                     <td>{{$item->notelp}}</td>
                     <td>{{$item->alamat}}</td>
-                    <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
+                    <td><a href="{{'/user/edit/'.$item->id}}" class="edit">Edit</a>    <button type="submit" class="delete" form="{{'del'.$item->id}}">Hapus</button>
+                    <form action="{{'/user/delete/'.$item->id}}" id="{{'del'.$item->id}}" method="post">@csrf</form></td>
                 </tr>
             @endforeach
             </table>

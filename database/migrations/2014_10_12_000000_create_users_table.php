@@ -17,10 +17,11 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('nik',16)->nullable();
             $table->string('nama');
+            $table->string('foto')->nullable();
             $table->string('username')->unique();
             $table->string('password');
-            $table->string('alamat');
-            $table->string('notelp');
+            $table->string('alamat')->nullable();
+            $table->string('notelp')->nullable();
             $table->enum('level',['masyarakat','petugas','admin'])->default('masyarakat');
             $table->rememberToken();
             $table->timestamps();

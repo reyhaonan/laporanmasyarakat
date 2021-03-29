@@ -24,6 +24,10 @@ Route::get('/gate', function () {
 
 Auth::routes();
 
+//login only
+Route::get('/lapor',[App\Http\Controllers\PengaduanController::class, 'create'])->middleware('auth');
+Route::post('/laporkan',[App\Http\Controllers\PengaduanController::class, 'store'])->middleware('auth');
+
 
 Route::middleware(['petugas'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\dashboardController::class, 'index']);
@@ -33,6 +37,9 @@ Route::middleware(['petugas'])->group(function () {
     Route::get('/dashboard/tanggapan', [App\Http\Controllers\dashboardController::class, 'tanggapan']);
 
     Route::post('/dashboard/tanggap',[App\Http\Controllers\TanggapanController::class, 'store']);
+    Route::post('/user/delete/{id}',[App\Http\Controllers\dashboardController::class, 'deleteUser']);
+    Route::post('/pengaduan/delete/{id}',[App\Http\Controllers\PengaduanController::class, 'destroy']);
+    Route::post('/tanggapan/delete/{id}',[App\Http\Controllers\TanggapanController::class, 'destroy']);
 });
 
 

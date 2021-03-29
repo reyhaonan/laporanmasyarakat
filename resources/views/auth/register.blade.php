@@ -130,9 +130,16 @@
                     <div class="card-body">
                         <div class="text">{{ __('Daftar') }}</div>
 
-                            <form method="POST" action="{{ route('register') }}">
+                            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                                 @csrf
 
+                                <div class="nametext">
+                                    <label for="foto">{{ __('Foto profil') }}</label>
+
+                                    <div class="textbox">
+                                        <input id="foto" type="file" name="foto" required>
+                                    </div>
+                                </div>
                                 <div class="nametext">
                                     <label for="nama">{{ __('Nama Lengkap') }}</label>
 

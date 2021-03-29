@@ -12,6 +12,6 @@ class Pengaduan extends Model
     protected $guarded = [];
 
     public function User(){
-        return $this->hasOne(User::class, 'id', 'id_pelapor');
+        return $this->belongsTo(User::class,'id_pelapor');
     }
 }

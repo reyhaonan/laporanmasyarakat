@@ -26,7 +26,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $pengaduan = Pengaduan::where('status','proses')->orderBy('created_at','asc')->take(3)->get();
+        $pengaduan = Pengaduan::where('status','proses')->orderBy('created_at','asc')->take(2)->get();
         return view('dashboard',['pengaduan' => $pengaduan]);
     }
     public function petugas()
@@ -49,5 +49,10 @@ class DashboardController extends Controller
     {
         $tanggapan = Tanggapan::orderBy('created_at','desc')->paginate(10);
         return view('tanggapan',['tanggapan' => $tanggapan]);
+    }
+
+    public function deleteUser($id){
+        User::find($id)->delete();
+        return redirect()->back();
     }
 }

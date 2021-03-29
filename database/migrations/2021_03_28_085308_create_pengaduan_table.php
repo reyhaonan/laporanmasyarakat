@@ -17,7 +17,7 @@ class CreatePengaduanTable extends Migration
             $table->id();
             $table->text('isi_laporan');
             $table->unsignedBigInteger('id_pelapor');
-            $table->foreign('id_pelapor')->references('id')->on('users');
+            $table->foreign('id_pelapor')->references('id')->on('users')->onDelete('cascade');
             $table->enum('status',['proses','selesai'])->default('proses');
             $table->string('foto');
             $table->timestamps();

@@ -159,7 +159,7 @@
         <div class="shape"><p class="titletext">ADMINISTRATOR</p>
         <hr>
             <div class="adminpic"></div>
-            <p class="username">Selamat datang,<br><span id="logged-in-user"></span></p> <!-- logged-in-user buat nama adminnya btw -->
+            <p class="username">Selamat datang,<br><span id="logged-in-user">{{Auth::user()->nama}}</span></p> <!-- logged-in-user buat nama adminnya btw -->
             <a href="/dashboard"><p class="text1">Dashboard</p></a>
             <a href="/dashboard/petugas"><p class="text2">Data Petugas</p></a>
             <a href="/dashboard/masyarakat"><p class="text3">Data Masyarakat</p></a>
@@ -170,61 +170,25 @@
         <div class="table">
             <table>
             <tr>
-                <th>Username</th>
+                <th>Nama pengadu</th>
                 <th>Pengaduan</th>
                 <th>Tanggapan</th>
                 <th>Petugas</th>
                 <th>Tgl Tanggapan</th>
                 <th>Aksi</th>
             </tr>
+            @foreach ($tanggapan as $item)
             <tr>
-                <td>Placeholder Nama</td>
-                <td>Placeholder pengaduan masyarakat</td>
-                <td>Placeholder tanggapan petugas</td>
-                <td>Nama Petugas</td>
-                <td>DD / MM / YYYY</td>
-                <td><button type="button" class="delete">Hapus</button></td>
+                <td>{{$item->pengaduan->user->nama}}</td>
+                <td>{{$item->pengaduan->isi_laporan}}</td>
+                <td>{{$item->tanggapan}}</td>
+                <td>{{$item->petugas->nama}}</td>
+                <td>{{date_format($item->created_at,"Y/m/d H:i:s")}}</td>
+                <td><button type="submit" form="{{'del'.$item->id}}" class="delete">Hapus</button>
+                    <form action="{{'/tanggapan/delete/'.$item->id}}" id="{{'del'.$item->id}}" method="post">@csrf</form>
+                </td>
             </tr>
-            <tr>
-                <td>Placeholder Nama</td>
-                <td>Placeholder pengaduan masyarakat</td>
-                <td>Placeholder tanggapan petugas</td>
-                <td>Nama Petugas</td>
-                <td>DD / MM / YYYY</td>
-                <td><button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td>Placeholder Nama</td>
-                <td>Placeholder pengaduan masyarakat</td>
-                <td>Placeholder tanggapan petugas</td>
-                <td>Nama Petugas</td>
-                <td>DD / MM / YYYY</td>
-                <td><button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td>Placeholder Nama</td>
-                <td>Placeholder pengaduan masyarakat</td>
-                <td>Placeholder tanggapan petugas</td>
-                <td>Nama Petugas</td>
-                <td>DD / MM / YYYY</td>
-                <td><button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td>Placeholder Nama</td>
-                <td>Placeholder pengaduan masyarakat</td>
-                <td>Placeholder tanggapan petugas</td>
-                <td>Nama Petugas</td>
-                <td>DD / MM / YYYY</td>
-                <td><button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td>Placeholder Nama</td>
-                <td>Placeholder pengaduan masyarakat</td>
-                <td>Placeholder tanggapan petugas</td>
-                <td>Nama Petugas</td>
-                <td>DD / MM / YYYY</td>
-                <td><button type="button" class="delete">Hapus</button></td>
-            </tr>
+            @endforeach
             </table>
         </div>
         <div class="logout">

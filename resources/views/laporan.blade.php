@@ -139,7 +139,16 @@
             top: 400px;
             left: 47%;
         }
-        
+
+        .alert{
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #69db658c;
+            color: #fff;
+            padding: 1rem 2rem
+        }
         </style>
         <script type="text/javascript">
 
@@ -156,30 +165,31 @@
     </head>
     <body>
         <p class="titletext">Pengaduan Masyarakat</p>
-        <div class="signin">
-            <button type="button" href="">Daftar</button>
-        </div>
-        <div class="login">
-            <button type="button" href="">Masuk</button>
-        </div>
         <div class="formlaporan">
                 <p>AJUKAN PENGADUAN</p>
                 <table>
                 <tr>
                     <td>Pengaduan</label></td>
-                    <td><textarea rows="4" class="textpengaduan"></textarea></td>
+                    <td><textarea rows="4" class="textpengaduan" form="ajukan" name="isi_laporan"></textarea>
+                    <form action="/laporkan" method="post" id="ajukan" enctype="multipart/form-data">@csrf</form>
+                    </td>
                 </tr>
                 <tr>
                     <td>Foto</label></td>
-                    <td><input id="uploadImage" type="file" name="myPhoto" onchange="PreviewImage();"></td>
+                    <td><input id="uploadImage" type="file" form="ajukan" name="foto" onchange="PreviewImage()"></td>
                 </tr>
                 <tr>
                     <td><img class="preview" id="uploadPreview" style="width: 100px; height: 100px;" /></td>
                 </tr>
                 </table>
-                <input class="submit" type="submit" value="Ajukan">
+                <input class="submit" type="submit" value="Ajukan" form="ajukan">
         </div>
         <div class="square1"></div>
         <div class="square2"></div>
+        @if(session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        @endif
     </body>
 </html>

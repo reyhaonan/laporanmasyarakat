@@ -23,10 +23,12 @@
             left: 90%;
             margin-top: -45px;
         }
-        .login button {
+        .login a {
             background-color: #68DB65;
             height: 30px;
             width: 100px;
+            padding: 10px 14px;
+            text-decoration: none;
             border: none;
             border-radius: 4px;
             font-weight: bold;
@@ -37,10 +39,12 @@
             left: 80%;
             margin-top: -45px;
         }
-        .signin button {
+        .signin a {
             background-color: #68DB65;
             height: 30px;
             width: 100px;
+            padding: 10px 14px;
+            text-decoration: none;
             border: none;
             border-radius: 4px;
             font-weight: bold;
@@ -88,7 +92,7 @@
             left: 43%;
             margin-top: 10px;
         }
-        .pengajuan button {
+        .pengajuan a {
             background-color: #68DB65;
             height: 30px;
             width: 200px;
@@ -96,22 +100,32 @@
             border-radius: 4px;
             font-weight: bold;
             color: white;
+            text-decoration: none;
+            padding: 10px 20px
         }
         </style>
     </head>
     <body>
         <p class="titletext">Pengaduan Masyarakat</p>
-        <div class="signin">
-            <button type="button" href="">Daftar</button>
-        </div>
-        <div class="login">
-            <button type="button" href="">Masuk</button>
-        </div>
+        @auth()
+            <div class="login logout">
+                <form action="{{ route('logout') }}" method="post" id="logout">@csrf</form>
+                <button type="submit" form="logout">Log Out</button>
+            </div>
+        @endauth
+        @guest
+            <div class="signin">
+                <a type="a" href="/register">Daftar</a>
+            </div>
+            <div class="login">
+                <a type="a" href="/login">Masuk</a>
+            </div>
+        @endguest
         <img src="logo.png">
         <h2>Aplikasi Pengaduan<br>SMK NEGERI 2 PURWAKARTA</h2>
         <p class="desc">Silakan sampaikan keluhan anda dan kami akan melayani anda dengan sepenuh hati</p>
         <div class="pengajuan">
-            <button type="button" href="">Ajukan Pengaduan</button>
+            <a href="{{ Auth::check()? '/lapor': 'login' }}" class="ajukan">Ajukan Pengaduan</a>
         </div>
         <div class="square1"></div>
         <div class="square2"></div>

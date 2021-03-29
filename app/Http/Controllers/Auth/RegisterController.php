@@ -64,9 +64,11 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         // $this->validator($data);
+        $foto_url = $data['foto']->store('images','public');
         return User::create([
             'nama' => $data['nama'],
             'username' => $data['username'],
+            'foto' => $foto_url,
             'alamat' => $data['alamat'],
             'nik' => $data['nik'],
             'notelp' => $data['notelp'],

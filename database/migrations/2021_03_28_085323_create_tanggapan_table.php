@@ -17,9 +17,9 @@ class CreateTanggapanTable extends Migration
             $table->id();
             $table->text('tanggapan');
             $table->unsignedBigInteger('id_petugas');
-            $table->foreign('id_petugas')->references('id')->on('users');
+            $table->foreign('id_petugas')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('id_pengaduan');
-            $table->foreign('id_pengaduan')->references('id')->on('pengaduan');
+            $table->foreign('id_pengaduan')->references('id')->on('pengaduan')->onDelete('cascade');
             $table->timestamps();
         });
     }

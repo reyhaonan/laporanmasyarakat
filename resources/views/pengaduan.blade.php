@@ -160,7 +160,6 @@
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
-            background-image: url('http://placehold.it/400x200');
         }
         .delete {
             background-color: #FF6C6C;
@@ -176,7 +175,7 @@
         <div class="shape"><p class="titletext">ADMINISTRATOR</p>
         <hr>
             <div class="adminpic"></div>
-            <p class="username">Selamat datang,<br><span id="logged-in-user"></span></p> <!-- logged-in-user buat nama adminnya btw -->
+            <p class="username">Selamat datang,<br><span id="logged-in-user">{{Auth::user()->nama}}</span></p> <!-- logged-in-user buat nama adminnya btw -->
             <a href="/dashboard"><p class="text1">Dashboard</p></a>
             <a href="/dashboard/petugas"><p class="text2">Data Petugas</p></a>
             <a href="/dashboard/masyarakat"><p class="text3">Data Masyarakat</p></a>
@@ -189,65 +188,33 @@
             <tr>
                 <th>Foto</th>
                 <th>Tanggal</th>
-                <th>Username</th>
+                <th>Nama</th>
                 <th>NIK</th>
                 <th>Isi Pengaduan</th>
                 <th>Status</th>
                 <th>Aksi</th>
             </tr>
-            <tr>
-                <td><div class="pic1"></div></td>
-                <td>DD / MM / YYYY</td>
-                <td>Gorstag</td>
-                <td>0987654321</td>
-                <td>thisisaplaceholder</td>
-                <td></td>
-                <td><button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td><div class="pic1"></div></td>
-                <td>DD / MM / YYYY</td>
-                <td>Lily</td>
-                <td>0987654321</td>
-                <td>thisisaplaceholder</td>
-                <td></td>
-                <td><button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td><div class="pic1"></div></td>
-                <td>DD / MM / YYYY</td>
-                <td>BruceWayne</td>
-                <td>0987654321</td>
-                <td>thisisaplaceholder</td>
-                <td></td>
-                <td><button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td><div class="pic1"></div></td>
-                <td>DD / MM / YYYY</td>
-                <td>Gorstag</td>
-                <td>0987654321</td>
-                <td>thisisaplaceholder</td>
-                <td></td>
-                <td><button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td><div class="pic1"></div></td>
-                <td>DD / MM / YYYY</td>
-                <td>Nihanchu</td>
-                <td>0987654321</td>
-                <td>thisisaplaceholder</td>
-                <td></td>
-                <td><button type="button" class="delete">Hapus</button></td>
-            </tr>
-            </table>
+            @foreach ($pengaduan as $item)
+                <tr>
+                    <td><div class="pic1" style="{{ 'background-image: url('.asset('storage/'.$item->foto).')' }}"></div></td>
+                    <td>{{date_format($item->created_at,"Y/m/d H:i:s")}}</td>
+                    <td>{{$item->user->nama}}</td>
+                    <td>{{$item->user->nik}}</td>
+                    <td>{{$item->isi_laporan}}</td>
+                    <td>{{$item->status}}</td>
+                    <td><button type="submit" form="{{'del'.$item->id}}" class="delete">Hapus</button>
+                        <form action="{{'/pengaduan/delete/'.$item->id}}" id="{{'del'.$item->id}}" method="post">@csrf</form>
+                    </td>
+                </tr>
+            @endforeach
+        </table>
         </div>
         <div class="logout">
             <form action="{{ route('logout') }}" method="post" id="logout">@csrf</form>
             <button type="submit" form="logout">Log Out</button>
         </div>
         <div class="page">
-            <a href="" class="triangle-left"></a><p>1</p><a href="" class="triangle-right"></a>
+            <a href="{{ $pengaduan->currentPage() == 1? '': '/dashboard/pengaduan?page='.($pengaduan->currentPage() - 1) }}" class="triangle-left"></a><p>{{$pengaduan->currentPage()}}</p><a href="{{ $pengaduan->currentPage() == $pengaduan->lastPage()?'':'/dashboard/pengaduan?page='.($pengaduan->currentPage() + 1) }}" class="triangle-right"></a>
         </div>
         </body>
 </html>
