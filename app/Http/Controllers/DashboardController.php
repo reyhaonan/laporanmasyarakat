@@ -39,4 +39,8 @@ class DashboardController extends Controller
     {
         return view('pengaduan');
     }
+    public function tanggapan()
+    {
+        return view('tanggapan');
+    }
 }
