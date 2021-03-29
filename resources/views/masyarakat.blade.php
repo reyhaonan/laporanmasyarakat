@@ -152,6 +152,22 @@
 	        border-bottom: 15px solid transparent;
             border-radius: 6px;
         }
+        .edit {
+            background-color: #68DB65;
+            height: 30px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            color: white;
+        }
+        .delete {
+            background-color: #FF6C6C;
+            height: 30px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            color: white;
+        }
         </style>
     </head>
     <body>
@@ -175,6 +191,7 @@
                 <th>Username</th>
                 <th>Nomor Telepon</th>
                 <th>Password</th>
+                <th>Aksi</th>
             </tr>
             <tr>
                 <td>0000000000</td>
@@ -182,6 +199,7 @@
                 <td>Gorstag</td>
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
+                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td>0000000000</td>
@@ -189,6 +207,7 @@
                 <td>Lily</td>
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
+                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td>0000000000</td>
@@ -196,6 +215,7 @@
                 <td>BruceWayne</td>
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
+                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td>0000000000</td>
@@ -203,6 +223,7 @@
                 <td>Gorstag</td>
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
+                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td>0000000000</td>
@@ -210,6 +231,7 @@
                 <td>Nihanchu</td>
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
+                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td>0000000000</td>
@@ -217,6 +239,7 @@
                 <td>WilburSoot</td>
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
+                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
             </tr>
             </table>
         </div>
