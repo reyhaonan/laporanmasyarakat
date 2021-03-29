@@ -94,7 +94,7 @@
         .pengaduan1 {
             position: absolute;
             left: 350px;
-            top: 150px;
+            top: 120px;
             border-radius: 4px;
             background-color: #54526B;
             width: 66%;
@@ -121,7 +121,7 @@
         .pengaduan2 {
             position: absolute;
             left: 350px;
-            top: 320px;
+            top: 275px;
             border-radius: 4px;
             background-color: #54526B;
             width: 66%;
@@ -145,6 +145,33 @@
             height: 30px;
             font-weight: 750;
         }
+        .pengaduan3 {
+            position: absolute;
+            left: 350px;
+            top: 430px;
+            border-radius: 4px;
+            background-color: #54526B;
+            width: 66%;
+            height: 150px;
+        }
+        .pengaduan3 h3 {
+            color: white;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .pengaduan3 p {
+            color: white;
+            margin-left: 20px;
+        }
+        .pengaduan3 button {
+            margin-left: 20px;
+            margin-top: 15px;
+            background-color: #68DB65;
+            border-radius: 4px;
+            border: none;
+            height: 30px;
+            font-weight: 750;
+        }
         .logout {
             position: absolute;
             right: 100px;
@@ -156,6 +183,35 @@
             border-radius: 4px;
             font-weight: bold;
             color: white;
+        }
+        .page {
+            position: absolute;
+            right: 150px;
+            top: 90%;
+            font-size: 16px;
+            color: white;
+        }
+        .triangle-right {
+            position: absolute;
+            left: 30px;
+            bottom: 10px;
+	        width: 0;
+	        height: 0;
+	        border-top: 15px solid transparent;
+	        border-left: 25px solid white;
+	        border-bottom: 15px solid transparent;
+            border-radius: 6px;
+        }
+        .triangle-left {
+            position: absolute;
+            right: 30px;
+            bottom: 10px;
+	        width: 0;
+	        height: 0;
+	        border-top: 15px solid transparent;
+	        border-right: 25px solid white;
+	        border-bottom: 15px solid transparent;
+            border-radius: 6px;
         }
         </style>
     </head>
@@ -184,8 +240,17 @@
                 <button type="button">Lihat Foto</button>
                 <button type="button">Tanggapi</button>
             </div>
+            <div class="pengaduan3">
+                <h3> Pengaduan dari Person</h3><hr> <!-- nama hanya placeholder -->
+                <p>Pengaduan masyarakat terbaru akan muncul disini</p>
+                <button type="button">Lihat Foto</button>
+                <button type="button">Tanggapi</button>
+            </div>
         <div class="logout">
             <button type="button">Log Out</button>
+        </div>
+        <div class="page">
+            <a href="" class="triangle-left"></a><p>1</p><a href="" class="triangle-right"></a>
         </div>
         </body>
 </html>
