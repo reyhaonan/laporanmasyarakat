@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Dashboard Pengaduan</title>
-    <head>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
@@ -41,7 +41,7 @@
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
-            background-image: url('http://placehold.it/400x200');
+            background-color: #979797
         }
         .username {
             color: white;
@@ -159,19 +159,28 @@
             top: 120px;
         }
         .textpassword {
-            position: absolute;
+            display: inline-block
+            /* position: absolute;
+
             left: 340px;
-            top: -10px;
+            top: -10px; */
         }
         .textname {
-            position: absolute;
+            display: inline-block
+            /* position: absolute;
+
             left: 83px;
-            top: -10px;
+            top: -10px; */
+        }
+        .textusrnm {
+            display: inline-block
+            /* position: absolute;
+
+            left: 0px;
+            top: -10px; */
         }
         .input {
-            position: absolute;
-            left: 695px;
-            top: 10px;
+            display: inline-block;
         }
         .submit {
             width: 200px;
@@ -180,19 +189,27 @@
             border: none;
             border-radius: 4px;
             color: white;
+
         }
         .inputpass {
             background-color: #54526B;
             border: none;
             border-radius: 4px;
-            width: 346px;
+            width: 170px;
             height: 30px;
         }
         .inputname {
             background-color: #54526B;
             border: none;
             border-radius: 4px;
-            width: 249px;
+            width: 170px;
+            height: 30px;
+        }
+        .inputusrnm {
+            background-color: #54526B;
+            border: none;
+            border-radius: 4px;
+            width: 170px;
             height: 30px;
         }
         .edit {
@@ -217,8 +234,8 @@
 
         <div class="shape"><p class="titletext">ADMINISTRATOR</p>
         <hr>
-            <div class="adminpic"></div>
-            <p class="username">Selamat datang,<br><span id="logged-in-user"></span></p> <!-- logged-in-user buat nama adminnya btw -->
+            <div class="adminpic" style="{{'background-image:url('.asset('storage/'.Auth::user()->foto).')'}}"></div>
+            <p class="username">Selamat datang,<br><span id="logged-in-user">{{Auth::user()->nama}}</span></p> <!-- logged-in-user buat nama adminnya btw -->
             <a href="/dashboard"><p class="text1">Dashboard</p></a>
             <a href="/dashboard/petugas"><p class="text2">Data Petugas</p></a>
             <a href="/dashboard/masyarakat"><p class="text3">Data Masyarakat</p></a>
@@ -226,14 +243,19 @@
             <a href="/dashboard/tanggapan"><p class="text5">Data Tanggapan</p></a>
         </div>
         <div class="content">Petugas</div>
-        <form>
+        <form action="/user/create" method="POST">
+            @csrf
             <div class="textname">
                 <label>Nama Lengkap</label>
-                <input class="inputname" type="text">
+                <input class="inputname" type="text" name="nama">
+            </div>
+            <div class="textusrnm">
+                <label>Username</label>
+                <input class="inputusrnm" type="text" name="username">
             </div>
             <div class="textpassword">
                 <label>Password</label>
-                <input class="inputpass" type="text">
+                <input class="inputpass" type="text" name="password">
             </div>
             <div class="input">
                 <input class="submit" type="submit" value="Tambahkan">
@@ -244,39 +266,24 @@
             <tr>
                 <th>No</th>
                 <th>Nama</th>
-                <th>Password</th>
+                <th>Username</th>
                 <th>Aksi</th>
             </tr>
+            @php
+                $i = 1
+            @endphp
+            @foreach ($petugas as $item)
             <tr>
-                <td>1</td>
-                <td>Jarvis Dundragon</td>
-                <td>themostsecurepassword</td>
-                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
+                <td>{{$i}}</td>
+                <td>{{$item->nama}}</td>
+                <td>{{$item->username}}</td>
+                <td><a href="{{'/user/edit/'.$item->id}}" class="edit">Edit</a>    <button type="submit" class="delete" form="{{'del'.$item->id}}">Hapus</button>
+                    <form action="{{'/user/delete/'.$item->id}}" id="{{'del'.$item->id}}" method="post">@csrf</form></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Ramas Redwald</td>
-                <td>enteryourpassword</td>
-                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Runa Falone</td>
-                <td>thereisnoIinteam</td>
-                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Ramona Helton</td>
-                <td>icanthinkany</td>
-                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Kain Hayward</td>
-                <td>ranboo</td>
-                <td><button type="button" class="edit">Edit</button>    <button type="button" class="delete">Hapus</button></td>
-            </tr>
+            @php
+                $i++
+            @endphp
+            @endforeach
             </table>
         </div>
         <div class="logout">

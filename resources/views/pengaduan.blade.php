@@ -41,7 +41,7 @@
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
-            background-image: url('http://placehold.it/400x200');
+            background-color: #979797
         }
         .username {
             color: white;
@@ -174,7 +174,7 @@
 
         <div class="shape"><p class="titletext">ADMINISTRATOR</p>
         <hr>
-            <div class="adminpic"></div>
+            <div class="adminpic" style="{{'background-image:url('.asset('storage/'.Auth::user()->foto).')'}}"></div>
             <p class="username">Selamat datang,<br><span id="logged-in-user">{{Auth::user()->nama}}</span></p> <!-- logged-in-user buat nama adminnya btw -->
             <a href="/dashboard"><p class="text1">Dashboard</p></a>
             <a href="/dashboard/petugas"><p class="text2">Data Petugas</p></a>

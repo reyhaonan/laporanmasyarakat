@@ -14,4 +14,8 @@ class Pengaduan extends Model
     public function User(){
         return $this->belongsTo(User::class,'id_pelapor');
     }
+
+    public function Tanggapan(){
+        return $this->hasOne(Tanggapan::class,'id_pengaduan');
+    }
 }

@@ -103,6 +103,10 @@
             text-decoration: none;
             padding: 10px 20px
         }
+        .daftar{
+            background: #c4c4c7 !important;
+            color: #313040 !important
+        }
         </style>
     </head>
     <body>
@@ -126,6 +130,7 @@
         <p class="desc">Silakan sampaikan keluhan anda dan kami akan melayani anda dengan sepenuh hati</p>
         <div class="pengajuan">
             <a href="{{ Auth::check()? '/lapor': 'login' }}" class="ajukan">Ajukan Pengaduan</a>
+            <a href="/daftarlapor" style="{{Auth::check()?'display:inline':'display:none'}}" class="daftar">Daftar laporan</a>
         </div>
         <div class="square1"></div>
         <div class="square2"></div>

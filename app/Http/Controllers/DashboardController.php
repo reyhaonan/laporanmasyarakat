@@ -6,6 +6,7 @@ use App\Models\Pengaduan;
 use App\Models\Tanggapan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DashboardController extends Controller
 {
@@ -51,6 +52,32 @@ class DashboardController extends Controller
         return view('tanggapan',['tanggapan' => $tanggapan]);
     }
 
+    public function editUser($id){
+
+        return view('editUser',['user' => User::find($id)]);
+    }
+
+    public function createPetugas(Request $request){
+        User::create([
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'level' => 'petugas',
+            'foto' => 'images/admin.jpg'
+        ]);
+        return redirect()->back();
+    }
+
+    public function updateUser(Request $request,$id){
+        User::find($id)->update([
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'alamat' => $request->alamat,
+            'nik' => $request->nik,
+            'notelp' => $request->notelp,
+        ]);
+        return redirect()->back();
+    }
     public function deleteUser($id){
         User::find($id)->delete();
         return redirect()->back();

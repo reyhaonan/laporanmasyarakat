@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Dashboard Pengaduan</title>
-    <head>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
@@ -41,7 +41,7 @@
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
-            background-image: url('http://placehold.it/400x200');
+            background-color: #979797
         }
         .username {
             color: white;
@@ -172,8 +172,8 @@
 
         <div class="shape"><p class="titletext">ADMINISTRATOR</p>
         <hr>
-            <div class="adminpic"></div>
-            <p class="username">Selamat datang,<br><span id="logged-in-user"></span></p> <!-- logged-in-user buat nama adminnya btw -->
+            <div class="adminpic" style="{{'background-image:url('.asset('storage/'.Auth::user()->foto).')'}}"></div>
+            <p class="username">Selamat datang,<br><span id="logged-in-user">{{Auth::user()->nama}}</span></p> <!-- logged-in-user buat nama adminnya btw -->
             <a href="/dashboard"><p class="text1">Dashboard</p></a>
             <a href="/dashboard/petugas"><p class="text2">Data Petugas</p></a>
             <a href="/dashboard/masyarakat"><p class="text3">Data Masyarakat</p></a>
@@ -181,35 +181,32 @@
             <a href="/dashboard/tanggapan"><p class="text5">Data Tanggapan</p></a>
         </div>
         <div class="content">Edit Data</div>
-            <form>
+            <form action="{{'/user/update/'.$user->id}}" method="POST">
+                @csrf
                 <div class="editnama">
                     <p>Nama</p>
-                    <input type="text">
+                    <input type="text" name="nama" value="{{$user->nama}}" required>
                 </div>
                 <div class="editUsername">
                     <p>Username</p>
-                    <input type="text">
+                    <input type="text" name="username" value="{{$user->username}}" required>
                 </div>
                 <div class="editTelp">
                     <p>Nomor Telepon</p>
-                    <input type="text">
+                    <input type="text" name="notelp" value="{{$user->notelp}}" required>
                 </div>
                 <div class="editNIK">
                     <p>NIK</p>
-                    <input type="text">
+                    <input type="text" name="nik" value="{{$user->nik}}" required>
                 </div>
                 <div class="editAlamat">
                     <p>Alamat</p>
-                    <textarea rows="4" class="textpengaduan"></textarea>
+                    <textarea rows="4" class="textpengaduan" name="alamat">{{$user->alamat}}</textarea>
                 </div>
                 <input class="submit" type="submit" value="Konfirmasi Edit">
             </form>
-        <div class="logout">
-            <form action="{{ route('logout') }}" method="post" id="logout">@csrf</form>
-            <button type="submit" form="logout">Log Out</button>
-        </div>
         <div class="page">
-            <class="triangle-right"></a>
+            <a class="triangle-right"></a>
         </div>
         </body>
 </html>

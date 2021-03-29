@@ -191,17 +191,20 @@
 	        border-bottom: 15px solid transparent;
             border-radius: 6px;
         }
-        
+
+
+        .back{
+            position: absolute;
+            color: white;
+            text-decoration: none;
+            right: 50px;
+            top: 50px;
+        }
         </style>
     </head>
     <body>
         <p class="titletext">Pengaduan Masyarakat</p>
-        <div class="signin">
-            <button type="button" href="">Daftar</button>
-        </div>
-        <div class="login">
-            <button type="button" href="">Masuk</button>
-        </div>
+        <a href="/" class="back">Kembali</a>
         <div class="formlaporan">
                 <p>DAFTAR PENGADUAN</p>
                 <table>
@@ -211,46 +214,22 @@
                 <th>Isi Pengaduan</th>
                 <th>Status</th>
             </tr>
+            @foreach ($pengaduan as $item)
+
             <tr>
-                <td><div class="pic1"></div></td>
-                <td>DD / MM / YYYY</td>
-                <td>thisisaplaceholder</td>
-                <td></td>
+                <td><div class="pic1" style="{{ 'background-image: url('.asset('storage/'.$item->foto).')' }}"></div></td>
+                <td>{{date_format($item->created_at,"Y/m/d H:i:s")}}</td>
+                <td>{{$item->isi_laporan}}</td>
+                <td>{{$item->status}}</td>
             </tr>
             <tr>
-                <td colspan="4">Respon tanggapan akan berada disini</td>
+                <td colspan="4">Respon dari {{$item->tanggapan->petugas->nama}} : {{$item->tanggapan->tanggapan}}</td>
             </tr>
-            <tr>
-                <td><div class="pic1"></div></td>
-                <td>DD / MM / YYYY</td>
-                <td>thisisaplaceholder</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td colspan="4">Respon tanggapan akan berada disini</td>
-            </tr>
-            <tr>
-                <td><div class="pic1"></div></td>
-                <td>DD / MM / YYYY</td>
-                <td>thisisaplaceholder</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td colspan="4">Respon tanggapan akan berada disini</td>
-            </tr>
-            <tr>
-                <td><div class="pic1"></div></td>
-                <td>DD / MM / YYYY</td>
-                <td>thisisaplaceholder</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td colspan="4">Respon tanggapan akan berada disini</td>
-            </tr>
+            @endforeach
             </table>
         </div>
         <div class="page">
-            <a href="" class="triangle-left"></a><p>1</p><a href="" class="triangle-right"></a>
+            <a href="{{ $pengaduan->currentPage() == 1? '': '/daftarlapor?page='.($pengaduan->currentPage() - 1) }}" class="triangle-left"></a><p>{{$pengaduan->currentPage()}}</p><a href="{{ $pengaduan->currentPage() == $pengaduan->lastPage()?'':'/daftarlapor?page='.($pengaduan->currentPage() + 1) }}" class="triangle-right"></a>
         </div>
         <div class="square1"></div>
     </body>

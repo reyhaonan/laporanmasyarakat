@@ -26,20 +26,25 @@ Auth::routes();
 
 //login only
 Route::get('/lapor',[App\Http\Controllers\PengaduanController::class, 'create'])->middleware('auth');
+Route::get('/daftarlapor',[App\Http\Controllers\PengaduanController::class, 'index'])->middleware('auth');
 Route::post('/laporkan',[App\Http\Controllers\PengaduanController::class, 'store'])->middleware('auth');
 
 
 Route::middleware(['petugas'])->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\dashboardController::class, 'index']);
-    Route::get('/dashboard/petugas', [App\Http\Controllers\dashboardController::class, 'petugas']);
-    Route::get('/dashboard/masyarakat', [App\Http\Controllers\dashboardController::class, 'masyarakat']);
-    Route::get('/dashboard/pengaduan', [App\Http\Controllers\dashboardController::class, 'pengaduan']);
-    Route::get('/dashboard/tanggapan', [App\Http\Controllers\dashboardController::class, 'tanggapan']);
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
+    Route::get('/dashboard/petugas', [App\Http\Controllers\DashboardController::class, 'petugas']);
+    Route::get('/dashboard/masyarakat', [App\Http\Controllers\DashboardController::class, 'masyarakat']);
+    Route::get('/dashboard/pengaduan', [App\Http\Controllers\DashboardController::class, 'pengaduan']);
+    Route::get('/dashboard/tanggapan', [App\Http\Controllers\DashboardController::class, 'tanggapan']);
 
     Route::post('/dashboard/tanggap',[App\Http\Controllers\TanggapanController::class, 'store']);
-    Route::post('/user/delete/{id}',[App\Http\Controllers\dashboardController::class, 'deleteUser']);
+    Route::post('/user/delete/{id}',[App\Http\Controllers\DashboardController::class, 'deleteUser']);
     Route::post('/pengaduan/delete/{id}',[App\Http\Controllers\PengaduanController::class, 'destroy']);
     Route::post('/tanggapan/delete/{id}',[App\Http\Controllers\TanggapanController::class, 'destroy']);
+    Route::post('/user/update/{id}',[App\Http\Controllers\DashboardController::class, 'updateUser']);
+    Route::post('/user/create',[App\Http\Controllers\DashboardController::class, 'createPetugas']);
+
+    Route::get('/user/edit/{id}',[App\Http\Controllers\DashboardController::class, 'editUser']);
 });
 
 

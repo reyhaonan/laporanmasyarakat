@@ -16,7 +16,8 @@ class PengaduanController extends Controller
      */
     public function index()
     {
-        //
+        $pengaduan = Pengaduan::where('id_pelapor',Auth::id())->orderBy('created_at','desc')->paginate(4);
+        return view('daftarpengaduan',['pengaduan' => $pengaduan]);
     }
 
     /**
