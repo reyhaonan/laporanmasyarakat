@@ -162,6 +162,13 @@
             background-size: cover;
             background-image: url('http://placehold.it/400x200');
         }
+        .delete {
+            background-color: #FF6C6C;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            color: white;
+        }
         </style>
     </head>
     <body>
@@ -186,6 +193,7 @@
                 <th>NIK</th>
                 <th>Isi Pengaduan</th>
                 <th>Status</th>
+                <th>Aksi</th>
             </tr>
             <tr>
                 <td><div class="pic1"></div></td>
@@ -194,6 +202,7 @@
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
                 <td></td>
+                <td><button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td><div class="pic1"></div></td>
@@ -202,6 +211,7 @@
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
                 <td></td>
+                <td><button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td><div class="pic1"></div></td>
@@ -210,6 +220,7 @@
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
                 <td></td>
+                <td><button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td><div class="pic1"></div></td>
@@ -218,6 +229,7 @@
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
                 <td></td>
+                <td><button type="button" class="delete">Hapus</button></td>
             </tr>
             <tr>
                 <td><div class="pic1"></div></td>
@@ -226,14 +238,7 @@
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
                 <td></td>
-            </tr>
-            <tr>
-                <td><div class="pic1"></div></td>
-                <td>DD / MM / YYYY</td>
-                <td>WilburSoot</td>
-                <td>0987654321</td>
-                <td>thisisaplaceholder</td>
-                <td></td>
+                <td><button type="button" class="delete">Hapus</button></td>
             </tr>
             </table>
         </div>
