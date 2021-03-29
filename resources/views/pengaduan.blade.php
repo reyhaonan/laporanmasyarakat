@@ -126,7 +126,7 @@
         .page {
             position: absolute;
             right: 150px;
-            top: 550px;
+            top: 90%;
             font-size: 16px;
             color: white;
         }
@@ -152,6 +152,16 @@
 	        border-bottom: 15px solid transparent;
             border-radius: 6px;
         }
+        .pic1 {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border-radius: 4px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-image: url('http://placehold.it/400x200');
+        }
         </style>
 
         <div class="shape"><p class="titletext">ADMINISTRATOR</p>
@@ -170,54 +180,54 @@
             <tr>
                 <th>Foto</th>
                 <th>Tanggal</th>
-                <th>Nama</th>
+                <th>Username</th>
                 <th>NIK</th>
                 <th>Isi Pengaduan</th>
                 <th>Status</th>
             </tr>
             <tr>
-                <td>0000000000</td>
-                <td>Gorstag Van Hyden</td>
+                <td><div class="pic1"></div></td>
+                <td>DD / MM / YYYY</td>
                 <td>Gorstag</td>
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
                 <td></td>
             </tr>
             <tr>
-                <td>0000000000</td>
-                <td>Liliana Gresser</td>
+                <td><div class="pic1"></div></td>
+                <td>DD / MM / YYYY</td>
                 <td>Lily</td>
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
                 <td></td>
             </tr>
             <tr>
-                <td>0000000000</td>
-                <td>Waller Meyer</td>
+                <td><div class="pic1"></div></td>
+                <td>DD / MM / YYYY</td>
                 <td>BruceWayne</td>
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
                 <td></td>
             </tr>
             <tr>
-                <td>0000000000</td>
-                <td>Grisel Scholz</td>
+                <td><div class="pic1"></div></td>
+                <td>DD / MM / YYYY</td>
                 <td>Gorstag</td>
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
                 <td></td>
             </tr>
             <tr>
-                <td>0000000000</td>
-                <td>Nikita Nihachu</td>
+                <td><div class="pic1"></div></td>
+                <td>DD / MM / YYYY</td>
                 <td>Nihanchu</td>
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
                 <td></td>
             </tr>
             <tr>
-                <td>0000000000</td>
-                <td>Will Gold</td>
+                <td><div class="pic1"></div></td>
+                <td>DD / MM / YYYY</td>
                 <td>WilburSoot</td>
                 <td>0987654321</td>
                 <td>thisisaplaceholder</td>
