@@ -223,7 +223,9 @@
                 <td>{{$item->status}}</td>
             </tr>
             <tr>
-                <td colspan="4">Respon dari {{$item->tanggapan->petugas->nama}} : {{$item->tanggapan->tanggapan}}</td>
+                @isset($item->tanggapan)
+                    <td colspan="4">Respon dari {{$item->tanggapan->petugas->nama}} : {{$item->tanggapan->tanggapan}}</td>
+                @endisset
             </tr>
             @endforeach
             </table>
