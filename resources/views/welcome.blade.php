@@ -227,6 +227,7 @@
         backdrop-filter: blur(3px);
         background: #ffffff0a;
         display: flex;
+        z-index: 33;
     } .plsloginoverlay p{
         margin: auto;
         color: #54575a

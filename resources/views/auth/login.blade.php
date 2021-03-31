@@ -22,10 +22,10 @@
         @enderror
 
         <div class="rememberContainer">
-            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}form="login">
+            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} form="login">
 
-            <label class="text" for="remember">
-                {{ __('Remember Me') }}
+            <label class="text" for="remember" >
+                Ingat saya
             </label>
         </div>
 
