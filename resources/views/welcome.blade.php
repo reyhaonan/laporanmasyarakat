@@ -64,8 +64,10 @@
             @endguest
             <div class="form round">
                 <h3 style="margin-bottom: 1rem" class="black">Tambahkan laporan</h3>
-                <img id="uploadPreview" class="round">
-                <label for="foto" class="addFoto round" id="uploadLabel">+ Upload foto</label>
+                <label for="foto" class="addFoto round" id="uploadLabel">
+                    <p style="margin: auto;" id="uptext">+ Upload foto</p>
+                    <img id="uploadPreview" class="uploadPreview round">
+                </label>
                 <input type="file" form="ajukan" name="foto" onchange="PreviewImage()" id="foto" hidden accept="image/*">
                 <textarea name="isi_laporan" class="round" placeholder="Tulis isi laporan disini" form="ajukan" required></textarea>
                 <button type="submit" form="ajukan" class="submitbtn round black">Kirim laporan</button>
@@ -250,14 +252,24 @@
         background-color: #f4f6f8;
         border: 2px dotted #DAE3EB;
         margin-bottom: 1rem;
-        padding: .6rem .8rem
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+        height: fit-content;
+        padding: .6rem .8rem;
+
 
     }
+    .addFoto p{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%)
+    }
     #uploadPreview{
-        margin-bottom: 1rem;
         width: 300px;
-        display: none
-
+        /* display: none */
     }
     .s1{
         display: flex;
@@ -277,8 +289,7 @@
     }
     textarea{
         border: 1px solid #DAE3EB;
-        min-width: 300px;
-        max-width: 300px;
+        resize: vertical;
         min-height: 100px;
         max-height: 400px;
         padding: .6rem .8rem;
@@ -347,9 +358,12 @@
         oFReader.readAsDataURL(document.getElementById("foto").files[0]);
 
         oFReader.onload = function (oFREvent) {
-            document.getElementById("uploadPreview").style.display = 'block';
-            document.getElementById("uploadPreview").src = oFREvent.target.result;
-            document.getElementById("uploadLabel").innerHTML = "+ Ganti foto";
+            document.getElementById("uploadLabel").style.padding = "0 0";
+            document.getElementById("uploadLabel").style.backgroundColor = "none";
+            document.getElementById("uploadLabel").style.border = "none";
+            document.getElementById("uptext").innerHTML = "+ Ganti foto";
+            document.getElementById("uptext").style.color = "#fff";
+            document.getElementById("uploadPreview").src = oFREvent.target.result
         };
     };
 

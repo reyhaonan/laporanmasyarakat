@@ -1,214 +1,200 @@
+@extends('layouts.app')
+@section('title','register')
+@section('body')
+<div class="container round">
+    <div class="registertext">Register</div>
+    <form method="POST" action="{{ route('register') }}" id="register" enctype="multipart/form-data">@csrf</form>
 
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Laporan masyarakat</title>
+        <label for="foto" class="addFoto round" id="uploadLabel">
+            <p style="margin: auto;" id="uptext">+ Upload foto</p>
+        </label>
+        <input type="file" form="register" name="foto" onchange="PreviewImage()" id="foto" hidden accept="image/*">
 
+        <div class="leftSide">
+            <input id="nama" type="text" class="input round @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="nama" autofocus form="register" placeholder="Nama lengkap">
 
-        <style>
-        @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-        body {
-                font-family:'Ubuntu', sans-serif;
-                background-color: #313040;
-                overflow: hidden;
-            }
-            .adminbutton {
-                margin-left: 480px;
-            }
-            .civilbutton {
-                margin-left: 50px;
-            }
-            .text {
-                text-align: center;
-                margin-top: -80px;
-                font-weight: 650;
-                color: white;
-            }
-            .textbox{
-                text-align: center;
-                margin-top: 20px;
-            }
-            .nametext{
-                font-family: 'Ubuntu', sans-serif;
-                text-align: center;
-                margin-top: 40px;
-                font-weight: 650;
-                color: white;
-            }
-            .label{
-                font-family: 'Ubuntu', sans-serif;
-                text-align: center;
-                margin-top: 20px;
-                font-weight: 650;
-                color: white
-            }
-            .usernametextthree{
-                text-align: center;
-                margin-top: 10px;
-            }
-            .margin{
-                font-family: 'Ubuntu', sans-serif;
-                font-weight: 650;
-                font-size: 13px;
-                width: 88px;
-                height: 31px;
-                border: none;
-                border-radius: 4px;
-                background: #1d8fe0;
-                text-decoration: none;
-                font-weight: 500;
-                color: #EAEAEA;
-                margin-top: 10px;
-            }
-            .buttontext {
-                font-family: 'Ubuntu', sans-serif;
-                font-size: 18px;
-                text-align: center;
-                width: 157px;
-                height: 34px;
-                border: none;
-                border-radius: 4px;
-                background: #54526B;
-                text-decoration: none;
-                font-weight: 500;
-                color: #EAEAEA;
-            }
-            .buttontexttoo {
-                font-family: 'Ubuntu', sans-serif;
-                font-size: 13px;
-                width: 157px;
-                height: 34px;
-                border: none;
-                border-radius: 4px;
-                background: #54526B;
-                text-decoration: none;
-                font-weight: 500;
-                color: #EAEAEA;
-                padding: 8px;
-            }
-            .square1 {
-                position: absolute;
-                left: -100px;
-                bottom: -125px;
-                height: 400px;
-                width: 400px;
-                border: 8px solid #555;
-                border-radius: 65px;
-                fill: none;
-                border-color: #54526B;
-            }
-            .square2 {
-                position: absolute;
-                left: -100px;
-                bottom: -200px;
-                height: 400px;
-                width: 490px;
-                border: 8px solid #555;
-                border-radius: 65px;
-                fill: none;
-                border-color: #54526B;
-            }
-            .card-body {
-                position: relative;
-                left: 530px;
-                top: 100px;
-                width: 300px;
-                height: 600px;
-                background-color: #54526B;
-                border-radius: 4px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                    <div class="card-body">
-                        <div class="text">{{ __('Daftar') }}</div>
+            @error('nama')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
 
-                            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-                                @csrf
+            <input id="nik" type="number" class="input round @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus form="register" placeholder="Nik">
 
-                                <div class="nametext">
-                                    <label for="foto">{{ __('Foto profil') }}</label>
+            @error('nik')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+            <input id="notelp" type="number" class="input round @error('notelp') is-invalid @enderror" name="notelp" value="{{ old('notelp') }}" required autocomplete="notelp" autofocus form="register" placeholder="Nomor telepon">
 
-                                    <div class="textbox">
-                                        <input id="foto" type="file" name="foto" required>
-                                    </div>
-                                </div>
-                                <div class="nametext">
-                                    <label for="nama">{{ __('Nama Lengkap') }}</label>
-
-                                    <div class="textbox">
-                                        <input id="nama" type="text" name="nama" value="{{ old('nama') }}" required autocomplete="nama">
-                                    </div>
-                                </div>
-
-                                <div class="label">
-                                    <label for="username">{{ __('Username') }}</label>
-
-                                    <div class="textbox">
-                                        <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username">
-                                    </div>
-                                </div>
-
-                                <div class="label">
-                                    <label for="nik">{{ __('NIK') }}</label>
-
-                                    <div class="textbox">
-                                        <input id="nik" type="nik" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik">
-                                    </div>
-                                </div>
-
-                                <div class="label">
-                                    <label for="notelp" class="col-md-4 col-form-label text-md-right">{{ __('Nomor Telepon') }}</label>
-
-                                    <div class="textbox">
-                                        <input id="notelp" type="notelp" class="form-control @error('nik') is-invalid @enderror" name="notelp" value="{{ old('notelp') }}" required autocomplete="notelp">
-                                    </div>
-                                </div>
-                                <div class="label">
-                                    <label for="alamat" class="col-md-4 col-form-label text-md-right">{{ __('Alamat') }}</label>
-
-                                    <div class="textbox">
-                                        <input id="alamat" type="alamat" class="form-control @error('nik') is-invalid @enderror" name="alamat" value="{{ old('alamat') }}" required autocomplete="alamat">
-                                    </div>
-                                </div>
-
-                                <div class="label">
-                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                    <div class="textbox">
-                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                                    </div>
-                                </div>
-
-                                <div class="label">
-                                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Konfirmasi Password') }}</label>
-
-                                    <div class="textbox">
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                    </div>
-                                </div>
-
-                                <div class="usernametextthree">
-                                        <button type="submit" class="margin">
-                                            {{ __('Daftar') }}
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @error('notelp')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
-        <div class="square1"></div>
-        <div class="square2"></div>
-</body>
-</html>
+
+        <div class="rightSide">
+
+            <input id="username" type="text" class="input round @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus form="register" placeholder="Username">
+
+            @error('username')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+
+            <input id="password" type="password" class="input round @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" form="register" placeholder="Password">
+
+            @error('password')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+
+            <input id="password-confirmation" type="password" class="input round @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password" form="register" placeholder="Konfirmasi Password">
+
+            @error('password')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+
+        </div>
+
+
+
+        <textarea name="alamat" class="input round textarea @error('alamat') is-invalid @enderror" placeholder="Alamat" form="register" >{{ old('alamat') }}</textarea>
+        @error('alamat')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
+        <div style="display: flex;margin-left:auto;margin-top:.5rem">
+            <button type="submit" class="register round" form="register">
+                Register
+            </button>
+            <a class="login" href="/login">
+                Login
+            </a>
+        </div>
+</div>
+@endsection
+
+@section('style')
+<style>
+    body{
+        display: flex;
+        height: 100vh;
+    }
+    .registertext{
+        position: absolute;
+        top: -3rem;
+        left: 40%;
+        transform: translateX(-50%);
+    }
+    .leftSide{
+        display: flex;
+        flex-direction: column;
+        width: calc(50% - (3rem + (.8rem * 6) + 2rem) / 2 - 1rem);
+        padding-right: .5rem;
+        margin-left: 1rem;
+    }
+    .addFoto{
+        background-color: #f4f6f8;
+        border: 2px dotted #DAE3EB;
+        margin: .5rem 0;
+        padding: .6rem .8rem;
+        cursor: pointer;
+        height: calc(3rem + (.8rem * 6) + 2rem);
+        width: calc(3rem + (.8rem * 6) + 2rem);
+        display: flex;
+        background-size: cover;
+        background-position: center
+    }
+    .rightSide{
+        display: flex;
+        flex-direction: column;
+        width: calc(50% - (3rem + (.8rem * 6) + 2rem) /2);
+
+        padding-left: .5rem
+    }
+    .textarea{
+        resize: vertical;
+        width: 100%;
+        min-height: 120px;
+        max-height: 400px;
+    }
+    .container{
+        position: relative;
+        margin: auto;
+        display: flex;
+        background: #fff;
+        padding: 2rem;
+        box-shadow: 0 4px 8px 1px #eb4e360c;
+        flex-wrap: wrap
+
+    }
+    .input{
+        border: 1px solid #DAE3EB;
+        padding: .6rem .8rem;
+        color: #6c7885;
+        font-size: 1rem;
+        margin: .5rem 0
+    }
+    .is-invalid{
+        border: 1px solid #eb4e36
+    }
+    .is-invalid::placeholder{
+        color: #e9a095 !important;
+    }
+    .input::placeholder{
+        color: #c8d1da;
+        font-size: 1rem
+    }
+    .register{
+        border: none;
+        color: #fff;
+        background: #eb4e36;
+        font-size: 1rem;
+        padding: .5rem 1rem;
+        margin: auto 0;
+        cursor: pointer;
+    }
+    .login{
+        text-decoration: none;
+        color: #eb4e36;
+        margin: auto 0;
+        text-align: center;
+        padding: .5rem 1.4rem;
+        margin-left: 1rem;
+    }
+    .invalid-feedback{
+        font-size: .6rem;
+        margin-top: -.4rem;
+    }
+    .invalid-feedback strong{
+        color: #eb4e36 !important;
+    }
+</style>
+@endsection
+
+@section('script')
+    <script>
+        function PreviewImage() {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("foto").files[0]);
+
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("uptext").innerHTML = "+ Ganti foto";
+            document.getElementById("uptext").style.color = "#fff";
+            document.getElementById("uploadLabel").style.border = "none";
+            document.getElementById("uploadLabel").style.backgroundImage = "url("+ oFREvent.target.result +")";
+        };
+    };
+
+    </script>
+@endsection
