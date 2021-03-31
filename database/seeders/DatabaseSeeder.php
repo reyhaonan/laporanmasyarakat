@@ -17,22 +17,24 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         User::create([
-            'nama' => 'asas',
-            'username' => 'asas',
-            'alamat' => 'asas barat',
+            'nama' => 'DaBaby',
+            'username' => 'bby',
+            'alamat' => 'Oklahoma, Florida',
             'nik' => '09089867',
             'notelp' => '08212314',
             'level' => 'petugas',
-            'password' => Hash::make('asas'),
+            'foto' => 'images/admin.jpg',
+            'password' => Hash::make('123'),
         ]);
         User::create([
-            'nama' => 'usus',
-            'username' => 'usus',
-            'alamat' => 'usus barat',
+            'nama' => 'Johnny Sins',
+            'username' => 'sins',
+            'alamat' => 'Magelang, Jawa tengah',
             'nik' => '09089867',
             'notelp' => '08212314',
             'level' => 'masyarakat',
-            'password' => Hash::make('usus'),
+            'foto' => 'images/image.jpg',
+            'password' => Hash::make('123'),
         ]);
     }
 }

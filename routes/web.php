@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Pengaduan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    if(Auth::check()){
+        $pengaduan = Pengaduan::where('id_pelapor',Auth::id())->orderBy('created_at','asc')->get();
+        return view('welcome',['pengaduan' => $pengaduan]);
+    }
     return view('welcome');
 });
 Route::get('/gate', function () {

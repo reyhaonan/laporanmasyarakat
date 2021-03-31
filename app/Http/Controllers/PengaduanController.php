@@ -38,13 +38,21 @@ class PengaduanController extends Controller
      */
     public function store(Request $request)
     {
-        $foto_url = $request->file('foto')->store('images','public');
-        Pengaduan::create([
-            'isi_laporan' => $request->isi_laporan,
-            'id_pelapor' => Auth::id(),
-            'foto' => $foto_url,
-        ]);
-        return redirect()->back()->with('message', 'Laporan berhasil ditambahkan!');
+        if($request->file('foto')){
+            $foto_url = $request->file('foto')->store('images','public');
+            Pengaduan::create([
+                'isi_laporan' => $request->isi_laporan,
+                'id_pelapor' => Auth::id(),
+                'foto' => $foto_url,
+            ]);
+            return redirect()->back()->with('message', 'Laporan berhasil ditambahkan!');
+        }else{
+            Pengaduan::create([
+                'isi_laporan' => $request->isi_laporan,
+                'id_pelapor' => Auth::id(),
+            ]);
+            return redirect()->back()->with('message', 'Laporan berhasil ditambahkan!');
+        }
     }
 
     /**

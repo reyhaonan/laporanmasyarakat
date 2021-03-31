@@ -1,138 +1,357 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
+@section('title','Home')
 
-        <title>Laporan masyarakat</title>
-        <style>
-        body {
-            overflow: hidden;
-            background-color: #313040;
-            font-family: 'Ubuntu', sans-serif;
-        }
-        .titletext {
-            margin-left: 30px;
-            margin-top: 30px;
-            font-weight: 750;
-            font-size: 25px;
-            color: white;
-        }
-        .login {
-            position: absolute;
-            left: 90%;
-            margin-top: -45px;
-        }
-        .login a {
-            background-color: #68DB65;
-            height: 30px;
-            width: 100px;
-            padding: 10px 14px;
-            text-decoration: none;
-            border: none;
-            border-radius: 4px;
-            font-weight: bold;
-            color: white;
-        }
-        .signin {
-            position: absolute;
-            left: 80%;
-            margin-top: -45px;
-        }
-        .signin a {
-            background-color: #68DB65;
-            height: 30px;
-            width: 100px;
-            padding: 10px 14px;
-            text-decoration: none;
-            border: none;
-            border-radius: 4px;
-            font-weight: bold;
-            color: white;
-        }
-        img {
-            position: absolute;
-            top: 26%;
-            left: 45%;
-            height: 30%;
-        }
-        h2 {
-            margin-top: 23%;
-            color: white;
-            text-align: center;
-        }
-        .desc {
-            color: white;
-            text-align: center;
-        }
-        .square1 {
-            position: absolute;
-            left: -100px;
-            bottom: -125px;
-            height: 400px;
-            width: 370px;
-            border: 8px solid #555;
-            border-radius: 65px;
-            fill: none;
-            border-color: #54526B;
-        }
-        .square2 {
-            position: absolute;
-            left: -100px;
-            bottom: -200px;
-            height: 400px;
-            width: 450px;
-            border: 8px solid #555;
-            border-radius: 65px;
-            fill: none;
-            border-color: #54526B;
-            }
-        .pengajuan {
-            position: absolute;
-            left: 43%;
-            margin-top: 10px;
-        }
-        .pengajuan a {
-            background-color: #68DB65;
-            height: 30px;
-            width: 200px;
-            border: none;
-            border-radius: 4px;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px
-        }
-        .daftar{
-            background: #c4c4c7 !important;
-            color: #313040 !important
-        }
-        </style>
-    </head>
-    <body>
-        <p class="titletext">Pengaduan Masyarakat</p>
-        @auth()
-            <div class="login logout">
-                <form action="{{ route('logout') }}" method="post" id="logout">@csrf</form>
-                <button type="submit" form="logout">Log Out</button>
+
+@section('body')
+
+@auth()
+<div class="publicDashboard">
+    @foreach ($pengaduan as $item)
+        <div class="reportContainer" id="{{'report'.$item->id}}">
+            <div class="reportBubble round">
+                <h4 class="username black">{{$item->user->nama.'(anda)'}}</h4>
+                <p class="date">{{$item->created_at->isoFormat('dddd, D MMMM Y h:m')}}</p>
+                @isset($item->foto)
+                    <img src="{{'/storage/'.$item->foto}}" class="reportImg round">
+                @endisset
+                {{$item->isi_laporan}}
             </div>
-        @endauth
-        @guest
-            <div class="signin">
-                <a type="a" href="/register">Daftar</a>
-            </div>
-            <div class="login">
-                <a type="a" href="/login">Masuk</a>
-            </div>
-        @endguest
-        <img src="logo.png">
-        <h2>Aplikasi Pengaduan<br>SMK NEGERI 2 PURWAKARTA</h2>
-        <p class="desc">Silakan sampaikan keluhan anda dan kami akan melayani anda dengan sepenuh hati</p>
-        <div class="pengajuan">
-            <a href="{{ Auth::check()? '/lapor': 'login' }}" class="ajukan">Ajukan Pengaduan</a>
-            <a href="/daftarlapor" style="{{Auth::check()?'display:inline':'display:none'}}" class="daftar">Daftar laporan</a>
+            <div class="pp" style="{{'background-image: url(/storage/'.$item->user->foto.')'}}"></div>
         </div>
-        <div class="square1"></div>
-        <div class="square2"></div>
-    </body>
-</html>
+        @isset($item->tanggapan)
+        <div class="replyContainer">
+            <div class="pp" style="{{'background-image: url(/storage/'.$item->tanggapan->petugas->foto.')'}}"></div>
+            <div class="replyBubble round">
+                <h4 class="username black">{{$item->tanggapan->petugas->nama}}</h4>
+                <a href="{{'#report'.$item->id}}" class="info">Tanggapan dari laporan anda pada {{$item->created_at->isoFormat('dddd, D MMMM Y')}}</a>
+                <p class="date">{{$item->tanggapan->created_at->isoFormat('dddd, D MMMM Y h:m')}}</p>
+                {{$item->tanggapan->tanggapan}}
+            </div>
+        </div>
+        @endisset
+    @endforeach
+</div>
+@endauth
+<div class="container">
+    <div class="navbar">
+        <img src="/smk.png" class="applogo">
+        @guest()
+            <a href="/login" class="login">Login</a>
+            <a href="/register" class="register round">Register</a>
+            @endguest
+        @auth
+            <button type="submit" class="logout round" form="logout">Logout</button type="submit">
+            <form action="{{ route('logout') }}" method="post" id="logout">@csrf</form>
+        @endauth
+    </div>
+    <section class="s1">
+
+
+        @guest
+        <div class="leftText">
+            <h1 class="black">Aplikasi laporan masyarakat</h1>
+            <p>Laporkan kepada kami jika terdapat penyalahgunaan wewenang,
+                <br>pelanggaran peraturan perundang-undangan atau kejadian merugikan
+                <br>yang dilakukan oleh seseorang.</p>
+        </div>
+        @endguest
+
+        <div class="formContainer">
+            @guest()
+                <div class="plsloginoverlay round">
+                    <p><a href="/login">Login</a> untuk mulai mengajukan laporan</p>
+                </div>
+            @endguest
+            <div class="form round">
+                <h3 style="margin-bottom: 1rem" class="black">Tambahkan laporan</h3>
+                <img id="uploadPreview" class="round">
+                <label for="foto" class="addFoto round" id="uploadLabel">+ Upload foto</label>
+                <input type="file" form="ajukan" name="foto" onchange="PreviewImage()" id="foto" hidden accept="image/*">
+                <textarea name="isi_laporan" class="round" placeholder="Tulis isi laporan disini" form="ajukan" required></textarea>
+                <button type="submit" form="ajukan" class="submitbtn round black">Kirim laporan</button>
+                @auth
+                <form action="/laporkan" method="POST" id="ajukan" enctype="multipart/form-data">@csrf</form>
+                @endauth
+            </div>
+        </div>
+    </section>
+
+    <section class="s2">
+        <div style="margin:auto 0">
+            <div>
+                <h3 class="heading black">Tentang aplikasi</h3>
+                <p class="about">Selamat datang di aplikasi web Pengaduan Masyarakat.
+                    <br>Aplikasi Pengaduan Masyarakat adalah aplikasi pengelolaan
+                    <br>dan tindak lanjut pengaduan serta pelaporan sebagai salah satu sarana bagi masyarakat
+                    <br>untuk melaporkan suatu kejadian atau permasalahan kepada pihak yang berwenang.
+                </p>
+            </div>
+
+            <div class="faq">
+                <h3 class="heading black">FAQ</h3>
+                <p class="about">
+                    <p class="q black">Q : Apakah bentuk respon yang diberikan kepada pelapor atas pengaduan yang disampaikan?</p>
+                    <p class="a">A : Respon yang diberikan kepada pelapor berupa respon awal dan tindak lanjut pengaduan paling akhir sesuai dengan respon yang telah diberikan oleh pihak penerima pengaduan. Respon terkait dengan status/tindak lanjut pengaduan dapat dilihat dalam daftar pengaduan pada aplikasi.</p>
+
+                    <p class="q black">Q : Berapa lama respon atas pengaduan yang telah disampaikan?</p>
+                    <p class="a">A : Jawaban/respon atas pengaduan yang disampaikan wajib diberikan dalam kurun waktu paling lambat 7 hari terhitung sejak pengaduan diterima.</p>
+
+                    <p class="q black">Q : Apakah pengaduan yang disampaikan akan selalu di respon?</p>
+                    <p class="a">A : Pengaduan yang diberikan akan direspon dan tercantum dalam aplikasi ini dan akan terupdate secara otomatis sesuai dengan respon yang telah diberikan oleh pihak penerima pengaduan. Sebagai catatan, pengaduan akan lebih mudah ditindaklanjuti apabila memenuhi unsur pengaduan</p>
+
+                    <p class="q black">Q : Apakah layanan pengaduan ini berbayar?</p>
+                    <p class="a">A : Layanan aplikasi ini gratis dan tidak ada dipungut biaya apapun.</p>
+                </p>
+            </div>
+        </div>
+    </section>
+</div>
+@endsection
+
+
+
+
+@section('style')
+{{-- s1 &container --}}
+<style>
+    body{
+        display: flex;
+    }
+    .applogo{
+        height: 30px;
+    }
+    .container{
+        height: 100vh;
+        flex: 6;
+        position: relative;
+        overflow-y: auto
+    }
+    .replyContainer{
+        display: flex;
+        padding: 1rem 1rem;
+        padding-right: 4rem;
+    }
+    .replyContainer .date{
+        right: inherit;
+        bottom: -1.2rem;
+        left: 0;
+        font-size: .8rem;
+        text-align: left !important
+    }
+    .replyContainer .username{
+        top: -1.5rem;
+        right: inherit;
+        left: 0;
+    }
+    .info{
+        color: #fff;
+        font-size: .7rem
+    }
+    .replyBubble{
+        position: relative;
+        background: #EB4E36;
+        padding: 1rem 1.5rem;
+        margin-left: .6rem;
+        margin-top: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        margin-right: auto;
+        color: #ffffff
+    }
+    .reportContainer{
+        display: flex;
+        padding: 1rem 1rem;
+        padding-left: 4rem;
+        padding-bottom: 2rem;
+        border-left: 4px solid transparent;
+    }
+    .reportContainer:target{
+        background: #eb4e3623;
+        border-left: 4px solid #eb4e36
+    }
+    .reportBubble{
+        position: relative;
+        background: #fff;
+        padding: 1rem 1.5rem;
+        margin-right: .6rem;
+        margin-top: 1.5rem;
+        display: flex;
+        margin-left: auto;
+        color: #54575a
+
+    }
+    .date{
+        position: absolute;
+        right: 0;
+        bottom: -1.2rem;
+        font-size: .8rem;
+        width: 300%;
+        text-align: right
+    }
+    .username{
+        position: absolute;
+        top: -1.5rem;
+        right: 0;
+    }
+    .reportImg{
+        height: 100px;
+        margin-right: 2rem;
+        margin-left: -.5rem
+    }
+    .pp{
+        background-position: center;
+        background-size: cover;
+        min-width: 40px;
+        height: 40px;
+        background-color: #6c7885;
+        border-radius: 100px
+    }
+    .publicDashboard{
+        flex: 4;
+        height: 100vh;
+        overflow-x:hidden;
+        background: #F4F6F8;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        padding: 2rem 0;
+    }
+    .plsloginoverlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(3px);
+        background: #ffffff0a;
+        display: flex;
+    } .plsloginoverlay p{
+        margin: auto;
+        color: #54575a
+    }.plsloginoverlay a{
+        color: #eb4e36
+    }
+    .submitbtn{
+        margin-top: 1rem;
+        padding: .6rem .8rem;
+        border: 1px solid #eb4e36;
+        background: #eb4e36;
+        color: #ffffff;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-left: auto;
+
+    }
+    .leftText h1{
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    .addFoto{
+        background-color: #f4f6f8;
+        border: 2px dotted #DAE3EB;
+        margin-bottom: 1rem;
+        padding: .6rem .8rem
+
+    }
+    #uploadPreview{
+        margin-bottom: 1rem;
+        width: 300px;
+        display: none
+
+    }
+    .s1{
+        display: flex;
+        height: 100vh;
+        width: 100%
+    }
+    .formContainer,.leftText{
+        margin: auto;
+        position: relative;
+    }
+    .form{
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        box-shadow: 0 4px 8px 1px #eb4e3618;
+        padding: 1rem;
+    }
+    textarea{
+        border: 1px solid #DAE3EB;
+        min-width: 300px;
+        max-width: 300px;
+        min-height: 100px;
+        max-height: 400px;
+        padding: .6rem .8rem;
+        color: #6c7885;
+        font-size: 1rem
+    }
+    textarea::placeholder{
+        color: #c8d1da;
+        font-size: 1rem
+    }
+</style>
+{{-- s2 & navbar --}}
+<style>
+    .s2{
+        height: 100vh;
+        width: 100%;
+        padding: 3rem;
+        display: flex;
+    }
+    .heading{
+        margin: auto;
+        font-size: 1.2rem
+    }
+    .faq{
+        margin-top: 2rem;
+    }
+    .navbar{
+        position: absolute;
+        width: 100%;
+        display: flex;
+        padding: 2rem 3rem
+    }
+    .login{
+        text-decoration: none;
+        padding: .6rem 1.2rem;
+        color: #EB4E36;
+        margin-left: auto;
+    }
+    .register{
+        margin-left: 1rem;
+        text-decoration: none;
+        padding: .6rem 1.2rem;
+        background: #EB4E36;
+        color: white;
+        font-size: 1rem;
+        border: none
+    }
+    .logout{
+        margin-left: auto;
+        padding: .6rem 1.2rem;
+        background: #EB4E36;
+        color: white;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+@endsection
+
+
+@section('script')
+<script type="text/javascript">
+
+    function PreviewImage() {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("foto").files[0]);
+
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("uploadPreview").style.display = 'block';
+            document.getElementById("uploadPreview").src = oFREvent.target.result;
+            document.getElementById("uploadLabel").innerHTML = "+ Ganti foto";
+        };
+    };
+
+</script>
+@endsection
