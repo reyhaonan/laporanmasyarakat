@@ -6,6 +6,14 @@
 
 @auth()
 <div class="publicDashboard">
+    @if (!$pengaduan->count())
+        <div class="emptyState">
+            <p>
+                Laporan yang dibuat<br> akan muncul disini!
+            </p>
+            <img src="/empty.png" alt="">
+        </div>
+    @endif
     @foreach ($pengaduan as $item)
         <div class="reportContainer" id="{{'report'.$item->id}}">
             <div class="reportBubble round">
@@ -118,6 +126,15 @@
 <style>
     body{
         display: flex;
+    }
+    .emptyState{
+        margin: auto;
+        display: flex;
+        flex-direction: column-reverse
+    }
+    .emptyState *{
+        margin: 0 auto;
+        text-align: center
     }
     .applogo{
         height: 30px;
