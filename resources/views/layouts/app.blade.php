@@ -12,6 +12,8 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="icon" href="/smk.png">
+    <link rel="stylesheet" href="/icofont/icofont.min.css">
 
     <!-- Styles -->
     <link href="/app.css" rel="stylesheet">

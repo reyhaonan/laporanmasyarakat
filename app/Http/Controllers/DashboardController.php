@@ -27,7 +27,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $pengaduan = Pengaduan::where('status','proses')->orderBy('created_at','asc')->take(2)->get();
+        $pengaduan = Pengaduan::where('status','proses')->orderBy('created_at','desc')->get();
         return view('dashboard',['pengaduan' => $pengaduan]);
     }
     public function petugas()

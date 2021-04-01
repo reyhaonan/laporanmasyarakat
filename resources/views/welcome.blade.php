@@ -15,12 +15,14 @@
         </div>
     @endif
     @foreach ($pengaduan as $item)
+    <div>
+
         <div class="reportContainer" id="{{'report'.$item->id}}">
             <div class="reportBubble round">
                 <h4 class="username black">{{$item->user->nama.'(anda)'}}</h4>
-                <p class="date">{{$item->created_at->isoFormat('dddd, D MMMM Y h:m')}}</p>
+                <p class="date">{{$item->created_at->isoFormat('dddd, D MMMM Y H:MM')}}</p>
                 @isset($item->foto)
-                    <img src="{{'/storage/'.$item->foto}}" class="reportImg round">
+                <img src="{{'/storage/'.$item->foto}}" class="reportImg round">
                 @endisset
                 {{$item->isi_laporan}}
             </div>
@@ -31,12 +33,13 @@
             <div class="pp" style="{{'background-image: url(/storage/'.$item->tanggapan->petugas->foto.')'}}"></div>
             <div class="replyBubble round">
                 <h4 class="username black">{{$item->tanggapan->petugas->nama}}</h4>
-                <a href="{{'#report'.$item->id}}" class="info">Tanggapan dari laporan anda pada {{$item->created_at->isoFormat('dddd, D MMMM Y')}}</a>
-                <p class="date">{{$item->tanggapan->created_at->isoFormat('dddd, D MMMM Y h:m')}}</p>
+                <a href="{{'#report'.$item->id}}" class="info"><i class="icofont-reply-all"></i>&nbsp; Tanggapan dari laporan anda</a>
+                <p class="date">{{$item->tanggapan->created_at->isoFormat('dddd, D MMMM Y H:MM')}}</p>
                 {{$item->tanggapan->tanggapan}}
             </div>
         </div>
         @endisset
+    </div>
     @endforeach
 </div>
 @endauth
@@ -164,12 +167,21 @@
     }
     .info{
         color: #fff;
-        font-size: .7rem
+        font-size: .7rem;
+        display: flex;
+        text-decoration: none;
+        margin-left: -1rem;
+    }
+    .info i{
+        font-size: .9rem;
+        width: 10px;
+        color: #DAE3EB
     }
     .replyBubble{
         position: relative;
         background: #EB4E36;
         padding: 1rem 1.5rem;
+        padding-top: .5rem;
         margin-left: .6rem;
         margin-top: 1.5rem;
         display: flex;
@@ -231,7 +243,7 @@
         overflow-x:hidden;
         background: #F4F6F8;
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         overflow-y: auto;
         padding: 2rem 0;
     }
@@ -324,7 +336,7 @@
     .s2{
         height: 100vh;
         width: 100%;
-        padding: 3rem;
+        padding: 3rem 16rem;
         display: flex;
     }
     .heading{

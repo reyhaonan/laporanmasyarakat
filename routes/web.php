@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     if(Auth::check()){
-        $pengaduan = Pengaduan::where('id_pelapor',Auth::id())->orderBy('created_at','asc')->get();
+        $pengaduan = Pengaduan::where('id_pelapor',Auth::id())->orderBy('created_at','desc')->get();
         return view('welcome',['pengaduan' => $pengaduan]);
     }
     return view('welcome');
@@ -36,13 +36,13 @@ Route::post('/laporkan',[App\Http\Controllers\PengaduanController::class, 'store
 
 
 Route::middleware(['petugas'])->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
-    Route::get('/dashboard/petugas', [App\Http\Controllers\DashboardController::class, 'petugas']);
-    Route::get('/dashboard/masyarakat', [App\Http\Controllers\DashboardController::class, 'masyarakat']);
-    Route::get('/dashboard/pengaduan', [App\Http\Controllers\DashboardController::class, 'pengaduan']);
-    Route::get('/dashboard/tanggapan', [App\Http\Controllers\DashboardController::class, 'tanggapan']);
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/petugas', [App\Http\Controllers\DashboardController::class, 'petugas'])->name('petugas');
+    Route::get('/dashboard/masyarakat', [App\Http\Controllers\DashboardController::class, 'masyarakat'])->name('masyarakat');
+    Route::get('/dashboard/pengaduan', [App\Http\Controllers\DashboardController::class, 'pengaduan'])->name('pengaduan');
+    Route::get('/dashboard/tanggapan', [App\Http\Controllers\DashboardController::class, 'tanggapan'])->name('tanggapan');
 
-    Route::post('/dashboard/tanggap',[App\Http\Controllers\TanggapanController::class, 'store']);
+    Route::post('/tanggap',[App\Http\Controllers\TanggapanController::class, 'store']);
     Route::post('/user/delete/{id}',[App\Http\Controllers\DashboardController::class, 'deleteUser']);
     Route::post('/pengaduan/delete/{id}',[App\Http\Controllers\PengaduanController::class, 'destroy']);
     Route::post('/tanggapan/delete/{id}',[App\Http\Controllers\TanggapanController::class, 'destroy']);
