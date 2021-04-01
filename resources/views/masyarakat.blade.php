@@ -1,217 +1,304 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.dashboard')
+@section('title','Data petugas')
 
-        <title>Dashboard Pengaduan</title>
-    <head>
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <style>
-        @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-        body {
-            background-color: #313040;
-            font-family: 'Ubuntu', sans-serif;
-        }
-        .shape {
-            overflow: hidden;
-            position: absolute;
-            left: -10px;
-            top: -10px;
-            width: 23%;
-            height: 100%;
-            background-color: #25252E;
-        }
-        .titletext {
-            margin-left: 30px;
-            margin-top: 30px;
-            font-weight: 750;
-            font-size: 25px;
-            color: white;
-        }
-        hr {
-            margin-top: -10px;
-        }
-        .adminpic {
-            margin-left: 30px;
-            margin-top: 10px;
-            display: inline-block;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover;
-            background-color: #979797
-        }
-        .username {
-            color: white;
-            margin-left: 150px;
-            margin-top: -80px;
-        }
-        .text1 {
-            position: absolute;
-            left: 30px;
-            top: 230px;;
-            font-weight: bold;
-            color: white;
-        }
-        .text2 {
-            position: absolute;
-            left: 30px;
-            top: 270px;;
-            font-weight: bold;
-            color: white;
-        }
-        .text3 {
-            position: absolute;
-            left: 30px;
-            top: 310px;;
-            font-weight: bold;
-            color: white;
-        }
-        .text4 {
-            position: absolute;
-            left: 30px;
-            top: 350px;;
-            font-weight: bold;
-            color: white;
-        }
-        .text5 {
-            position: absolute;
-            left: 30px;
-            top: 390px;;
-            font-weight: bold;
-            color: white;
-        }
-        .content {
-            position: absolute;
-            left: 350px;
-            top: 70px;
-            font-weight: bold;
-            color: white;
-            font-size: 30px;
-        }
-        .logout {
-            position: absolute;
-            right: 100px;
-        }
-        .logout button {
-            background-color: #FF6C6C;
-            height: 30px;
-            border: none;
-            border-radius: 4px;
-            font-weight: bold;
-            color: white;
-        }
-        table {
-            background-color: #54526B;
-            position: absolute;
-            top: 130px;
-            left: 350px;
-            border-radius: 4px;
-            text-align: center;
-            width: 66%;
-            border-collapse: collapse;
-            color: white;
-        }
-        th {
-            border: 5px solid #313040;
-            padding: 8px;
-        }
-        td {
-            border: 5px solid #313040;
-            border-radius: 10px;
-            padding: 5px;
-        }
-        .page {
-            position: absolute;
-            right: 150px;
-            top: 550px;
-            font-size: 16px;
-            color: white;
-        }
-        .triangle-right {
-            position: absolute;
-            left: 30px;
-            bottom: 10px;
-	        width: 0;
-	        height: 0;
-	        border-top: 15px solid transparent;
-	        border-left: 25px solid white;
-	        border-bottom: 15px solid transparent;
-            border-radius: 6px;
-        }
-        .triangle-left {
-            position: absolute;
-            right: 30px;
-            bottom: 10px;
-	        width: 0;
-	        height: 0;
-	        border-top: 15px solid transparent;
-	        border-right: 25px solid white;
-	        border-bottom: 15px solid transparent;
-            border-radius: 6px;
-        }
-        .edit {
-            background-color: #68DB65;
-            height: 30px;
-            border: none;
-            border-radius: 4px;
-            font-weight: bold;
-            color: white;
-        }
-        .delete {
-            background-color: #FF6C6C;
-            height: 30px;
-            border: none;
-            border-radius: 4px;
-            font-weight: bold;
-            color: white;
-        }
-        </style>
-    </head>
-    <body>
+@section('pageInfo','Edit/hapus data masyarakat!')
 
-        <div class="shape"><p class="titletext">ADMINISTRATOR</p>
-        <hr>
-            <div class="adminpic" style="{{'background-image:url('.asset('storage/'.Auth::user()->foto).')'}}"></div>
-            <p class="username">Selamat datang,<br><span id="logged-in-user">{{Auth::user()->nama}}</span></p> <!-- logged-in-user buat nama adminnya btw -->
-            <a href="/dashboard"><p class="text1">Dashboard</p></a>
-            <a href="/dashboard/petugas"><p class="text2">Data Petugas</p></a>
-            <a href="/dashboard/masyarakat"><p class="text3">Data Masyarakat</p></a>
-            <a href="/dashboard/pengaduan"><p class="text4">Data Pengaduan</p></a>
-            <a href="/dashboard/tanggapan"><p class="text5">Data Tanggapan</p></a>
-        </div>
-        <div class="content">Masyarakat</div>
-        <div class="table">
-            <table>
-            <tr>
-                <th>NIK</th>
-                <th>Nama</th>
-                <th>Username</th>
-                <th>Nomor Telepon</th>
-                <th>Alamat</th>
-                <th>Aksi</th>
+@section('body')
+<div class="modalBlur" onclick="cancelModal()" id="modalBlur"></div>
+<div class="modal round" id="modal">
+    <form method="POST" action="/user/update" id="editUser" enctype="multipart/form-data">@csrf</form>
+
+    <label for="foto" class="addFoto round" id="uploadLabel">
+        <p style="margin: auto;color:#fff" id="uptext">Ganti foto</p>
+    </label>
+    <input type="file" form="editUser" name="foto" onchange="PreviewImage()" id="foto" hidden accept="image/*">
+
+    <div class="rightForm">
+        <input id="nama" type="text" class="input round @error('nama') is-invalid @enderror" name="nama" autocomplete="off" required autofocus form="editUser" placeholder="Nama lengkap">
+
+        <input id="nik" type="number" class="input round @error('nik') is-invalid @enderror" name="nik" autocomplete="off" required autofocus form="editUser" placeholder="NIK">
+
+        <input id="notelp" type="number" class="input round @error('notelp') is-invalid @enderror" name="notelp" autocomplete="off" required autofocus form="editUser" placeholder="Nomor telepon">
+        <input id="username" type="hidden" name="username" form="editUser">
+
+    </div>
+
+    <textarea name="alamat" class="textarea round" placeholder="Alamat" id="alamat" form="editUser"></textarea>
+
+
+    <button type="submit" class="submit round" id="submit" form="editUser">
+        Update
+    </button>
+</div>
+<div class="container">
+    <table class="table">
+        <tr class="table-head">
+            <th>no.</th>
+            <th>Foto profil</th>
+            <th>NIK</th>
+            <th>Nama lengkap</th>
+            <th>Alamat</th>
+            <th>No telp</th>
+            <th class="action"></th>
+        </tr>
+        @php
+            $i = 1;
+        @endphp
+        @foreach ($masyarakat as $item)
+            <tr class="data">
+                <td style="width:10px">{{$i}}</td>
+                <td class="data-pp"><img src="{{'/storage/'.$item->foto}}"></td>
+                <td>{{$item->nik}}</td>
+                <td>{{$item->nama}}</td>
+                <td>{{$item->alamat}}</td>
+                <td>{{$item->notelp}}</td>
+                <td class="actionTd">
+                    <button class="edit round" onclick="editUser('{{$item->id}}','{{$item->nama}}','{{$item->nik}}','{{$item->alamat}}','{{$item->notelp}}','{{$item->foto}}','{{$item->username}}')">Edit</button>
+                    <button type="submit" class="hapus round" form="delete-{{$item->id}}">Hapus</button>
+                    <form action="/user/delete/{{$item->id}}" method="post" id="delete-{{$item->id}}">@csrf</form>
+                </td>
             </tr>
-            @foreach ($masyarakat as $item)
-                <tr>
-                    <td>{{$item->nik}}</td>
-                    <td>{{$item->nama}}</td>
-                    <td>{{$item->username}}</td>
-                    <td>{{$item->notelp}}</td>
-                    <td>{{$item->alamat}}</td>
-                    <td><a href="{{'/user/edit/'.$item->id}}" class="edit">Edit</a>    <button type="submit" class="delete" form="{{'del'.$item->id}}">Hapus</button>
-                    <form action="{{'/user/delete/'.$item->id}}" id="{{'del'.$item->id}}" method="post">@csrf</form></td>
-                </tr>
-            @endforeach
-            </table>
-        </div>
-        <div class="logout">
-            <form action="{{ route('logout') }}" method="post" id="logout">@csrf</form>
-            <button type="submit" form="logout">Log Out</button>
-        </div>
-        <div class="page">
-            <a href="{{ $masyarakat->currentPage() == 1? '': '/dashboard/masyarakat?page='.($masyarakat->currentPage() - 1) }}" class="triangle-left"></a><p>{{$masyarakat->currentPage()}}</p><a href="{{ $masyarakat->currentPage() == $masyarakat->lastPage()?'':'/dashboard/masyarakat?page='.($masyarakat->currentPage() + 1) }}" class="triangle-right"></a>
-        </div>
-        </body>
-</html>
+            @php
+                $i++
+            @endphp
+        @endforeach
+    </table>
+    <div class="pagination">
+        <a href="{{$masyarakat->previousPageUrl()}}" class="prev round {{$masyarakat->onFirstPage()? 'disable':''}}"><i class="icofont-arrow-left"></i></a>
+        <a href="{{$masyarakat->nextPageUrl()}}" class="next round {{$masyarakat->hasMorePages()? '':'disable'}}"><i class="icofont-arrow-right"></i></a>
+    </div>
+</div>
+@endsection
+
+@section('style')
+<style>
+.rightForm{
+    width: calc(100% - (3rem + (.8rem * 6) + 2rem));
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+}
+.textarea{
+    border: 1px solid #DAE3EB;
+    resize: vertical;
+    margin-top: .5rem;
+    width: 100%;
+    min-height: 100px;
+    max-height: 400px;
+    padding: .6rem .8rem;
+    color: #6c7885;
+    font-size: 1rem
+}
+.textarea::placeholder{
+    color: #c8d1da;
+    font-size: 1rem
+}
+.modalBlur{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 22;
+    backdrop-filter: blur(3px);
+    background: #4444442d;
+}
+.action{
+    width: 300px;
+    text-align: right
+}
+.actionTd{
+    text-align: right
+}
+.modal{
+    display: none;
+    z-index: 23;
+    background: #fff;
+    padding: 1rem;
+    flex-wrap: wrap;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%)
+}
+.edit{
+    padding: .6rem .8rem;
+    background: #f0d646;
+    border: none;
+    color: #000;
+    cursor: pointer;
+}
+.hapus{
+    padding: .6rem .8rem;
+    background: #eb4e36;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+.input{
+    border: 1px solid #DAE3EB;
+    padding: .6rem .8rem;
+    color: #6c7885;
+    font-size: 1rem;
+    margin: .5rem 0
+}
+.is-invalid{
+    border: 1px solid #eb4e36
+}
+.is-invalid::placeholder{
+    color: #e9a095 !important;
+}
+.input::placeholder{
+    color: #c8d1da;
+    font-size: 1rem
+}
+.submit{
+    border: none;
+    color: #fff;
+    background: #eb4e36;
+    font-size: 1rem;
+    margin-top: .5rem;
+    margin-left: auto;
+    padding: .5rem 1rem;
+    cursor: pointer;
+}
+.modalTrigger{
+    border: none;
+    color: #fff;
+    background: #eb4e36;
+    font-size: 1rem;
+    margin-left: auto;
+    padding: .5rem 1rem;
+    cursor: pointer;
+}
+.cancel{
+    text-decoration: none;
+    color: #eb4e36;
+    text-align: center;
+    padding: .5rem;
+}
+.invalid-feedback{
+    font-size: .6rem;
+    margin-top: -.4rem;
+}
+.invalid-feedback strong{
+    color: #eb4e36 !important;
+}
+
+.pagination{
+    margin-left: auto;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+}
+.pagination a{
+    background: #eb4e36;
+    padding: .6rem .8rem;
+    text-decoration: none;
+}
+.disable{
+    background: transparent !important;
+    cursor: not-allowed;
+}
+.disable i{
+    color: #eb4e36 !important
+}
+.pagination a i{
+    color: white;
+    font-size: 1.2rem
+}
+.table{
+    border-collapse: collapse;
+    margin: 2rem;
+    width: calc(100% - 4rem);
+    text-align: left;
+    overflow: hidden;
+}
+.table-head{
+    background: #fff;
+    box-shadow: 0 2px 4px -2px #293b5ab4;
+}
+.table-head th{
+    padding: 1rem 2rem;
+    border: 1px solid #DAE3EB;
+}
+.data td{
+    border: 1px solid #f5f8fc;
+    padding: 1rem 2rem;
+}
+.data{
+    border: 1px solid #FBFCFD
+}
+.data:nth-child(odd){
+    background: #FBFCFD
+}
+.data-pp img{
+    height: 50px;
+}
+.data-pp{
+    width: 50px;
+}
+.container{
+    display: flex;
+    flex-direction: column
+}
+
+.addFoto{
+    background-color: #f4f6f8;
+    margin: .5rem 0;
+    padding: .6rem .8rem;
+    cursor: pointer;
+    height: calc(3rem + (.8rem * 6) + 2rem);
+    width: calc(3rem + (.8rem * 6) + 2rem);
+    display: flex;
+    background-size: cover;
+    background-position: center
+}
+</style>
+@endsection
+
+@section('script')
+    <script>
+        function PreviewImage() {
+            var oFReader = new FileReader();
+            oFReader.readAsDataURL(document.getElementById("foto").files[0]);
+
+            oFReader.onload = function (oFREvent) {
+                document.getElementById("uptext").innerHTML = "+ Ganti foto";
+                document.getElementById("uptext").style.color = "#fff";
+                document.getElementById("uploadLabel").style.border = "none";
+                document.getElementById("uploadLabel").style.backgroundImage = "url("+ oFREvent.target.result +")";
+            };
+        };
+
+        function openModal(){
+            document.getElementById('modalBlur').style.display = 'inherit'
+            document.getElementById('modal').style.display = 'flex'
+        }
+        function editUser(id,nama,nik,alamat,notelp,url,username){
+            document.getElementById('notelp').value = notelp
+            document.getElementById("uploadLabel").style.backgroundImage = "url(/storage/"+ url +")";
+            document.getElementById('nama').value = nama
+            document.getElementById('nik').value = nik
+            document.getElementById('alamat').value = alamat
+            document.getElementById('username').value = username
+
+            // form edit
+            document.getElementById('editUser').action = '/user/update/' + id
+            openModal()
+        }
+        function cancelModal(){
+            document.getElementById('notelp').value = ''
+            document.getElementById("uploadLabel").style.backgroundImage = ''
+            document.getElementById('nama').value = ''
+            document.getElementById('nik').value = ''
+            document.getElementById('alamat').value = ''
+
+            // form edit
+            document.getElementById('editUser').action = '/user/update/'
+            document.getElementById('modalBlur').style.display = 'none'
+            document.getElementById('modal').style.display = 'none'
+        }
+
+    </script>
+@endsection

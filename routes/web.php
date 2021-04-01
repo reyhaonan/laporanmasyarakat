@@ -30,8 +30,6 @@ Route::get('/gate', function () {
 Auth::routes();
 
 //login only
-Route::get('/lapor',[App\Http\Controllers\PengaduanController::class, 'create'])->middleware('auth');
-Route::get('/daftarlapor',[App\Http\Controllers\PengaduanController::class, 'index'])->middleware('auth');
 Route::post('/laporkan',[App\Http\Controllers\PengaduanController::class, 'store'])->middleware('auth');
 
 

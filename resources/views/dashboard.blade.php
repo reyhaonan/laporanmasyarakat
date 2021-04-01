@@ -30,7 +30,7 @@
                     {{$item->isi_laporan}}
                 </p>
                 <div class="reply">
-                    <input id="tanggapan" type="text" class="input replyInput round @error('tanggapan') is-invalid @enderror" name="tanggapan" required form="{{'reply-'.$item->id}}" placeholder="Masukkan tanggapan">
+                    <input id="tanggapan" type="text" class="input replyInput round @error('tanggapan') is-invalid @enderror" name="tanggapan" required form="{{'reply-'.$item->id}}" placeholder="Masukkan tanggapan" autocomplete="off">
                     <button type="submit" class="replySend round" form="{{'reply-'.$item->id}}"><i class="icofont-paper-plane"></i></button>
                     <form action="/tanggap" method="post" id="{{'reply-'.$item->id}}">@csrf <input type="hidden" name="id_pengaduan" value="{{$item->id}}"></form>
                 </div>
