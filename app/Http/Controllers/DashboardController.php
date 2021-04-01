@@ -7,6 +7,7 @@ use App\Models\Tanggapan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
@@ -58,27 +59,42 @@ class DashboardController extends Controller
     }
 
     public function createPetugas(Request $request){
+        $foto_url = $request->file('foto')->store('images','public');
         User::create([
             'nama' => $request->nama,
             'username' => $request->username,
             'password' => Hash::make($request->password),
             'level' => 'petugas',
-            'foto' => 'images/admin.jpg'
+            'foto' => $foto_url
         ]);
         return redirect()->back();
     }
 
     public function updateUser(Request $request,$id){
-        User::find($id)->update([
-            'nama' => $request->nama,
-            'username' => $request->username,
-            'alamat' => $request->alamat,
-            'nik' => $request->nik,
-            'notelp' => $request->notelp,
-        ]);
-        return redirect()->back();
+        if($request->file('foto')){
+            Storage::delete('public/'.User::find($id)->foto);
+            $foto_url = $request->file('foto')->store('images','public');
+            User::find($id)->update([
+                'nama' => $request->nama,
+                'username' => $request->username,
+                'alamat' => $request->alamat,
+                'nik' => $request->nik,
+                'notelp' => $request->notelp,
+                'foto' => $foto_url
+                ]);
+        }else{
+            User::find($id)->update([
+                'nama' => $request->nama,
+                'username' => $request->username,
+                'alamat' => $request->alamat,
+                'nik' => $request->nik,
+                'notelp' => $request->notelp,
+                ]);
+        }
+                return redirect()->back();
     }
     public function deleteUser($id){
+        Storage::delete('public/'.User::find($id)->foto);
         User::find($id)->delete();
         return redirect()->back();
     }

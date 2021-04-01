@@ -93,6 +93,11 @@ url("./fonts/icofont.woff") format("woff");
   content: "\efb4";
 }
 
+.icofont-arrow-right:before
+{
+  content: "\ea5d";
+}
+
 .icofont-xs
 {
   font-size: .5em;

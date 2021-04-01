@@ -97,7 +97,7 @@ class PengaduanController extends Controller
      */
     public function destroy($id)
     {
-        Storage::delete(Pengaduan::find($id)->foto_url);
+        Storage::delete('public/'.Pengaduan::find($id)->foto_url);
         Pengaduan::find($id)->delete();
         return redirect()->back();
     }

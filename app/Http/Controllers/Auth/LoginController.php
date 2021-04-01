@@ -21,6 +21,12 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+
+    //override fungsi bawaan
+    public function username()
+    {
+        return 'username';
+    }
     /**
      * Where to redirect users after login.
      *
