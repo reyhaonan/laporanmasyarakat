@@ -59,7 +59,7 @@
         @foreach ($petugas as $item)
             <tr class="data">
                 <td style="width:10px">{{$i}}</td>
-                <td class="data-pp"><img src="{{'/storage/'.$item->foto}}"></td>
+                <td class="data-pp"><img src="{{'/storage/'.$item->foto}}" style="cursor: zoom-in" onclick="preview('{{$item->foto}}')"></td>
                 <td>{{$item->nama}}</td>
                 <td>{{$item->username}}</td>
                 <td class="actionTd">
@@ -89,6 +89,7 @@
     padding-left: 1rem;
 }
 .modalBlur{
+    cursor: pointer;
     display: none;
     position: absolute;
     top: 0;
@@ -96,8 +97,8 @@
     width: 100vw;
     height: 100vh;
     z-index: 22;
-    backdrop-filter: blur(3px);
-    background: #4444442d;
+    backdrop-filter: blur(4px);
+    background: #2727279c;
 }
 .action{
     width: 300px;

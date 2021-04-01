@@ -47,7 +47,6 @@ Route::middleware(['petugas'])->group(function () {
     Route::post('/user/update/{id}',[App\Http\Controllers\DashboardController::class, 'updateUser']);
     Route::post('/user/create',[App\Http\Controllers\DashboardController::class, 'createPetugas']);
 
-    Route::get('/user/edit/{id}',[App\Http\Controllers\DashboardController::class, 'editUser']);
 });
 
 

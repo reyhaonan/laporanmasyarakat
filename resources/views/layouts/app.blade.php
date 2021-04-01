@@ -21,6 +21,8 @@
     @yield('style')
 </head>
 <body id="body">
+    <div id="imgpreviewblur" onclick="closePreview()"></div>
+    <img id="imgpreview">
     <div id="particle"></div>
     <p class="copyright">© Kelompok 7</p>
     @yield('body')
@@ -30,6 +32,16 @@
         particlesJS.load('particle', '/particlesjs-config.json', function() {
             console.log('callback - particles.js config loaded');
         });
+
+        function preview(url){
+            document.getElementById('imgpreviewblur').style.display = 'inherit'
+            document.getElementById('imgpreview').src = '/storage/' + url
+            document.getElementById('imgpreview').style.display = 'inherit'
+        }
+        function closePreview(){
+            document.getElementById('imgpreviewblur').style.display = 'none'
+            document.getElementById('imgpreview').style.display = 'none'
+        }
     </script>
 </body>
 </html>

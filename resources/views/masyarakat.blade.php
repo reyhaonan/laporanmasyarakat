@@ -47,7 +47,7 @@
         @foreach ($masyarakat as $item)
             <tr class="data">
                 <td style="width:10px">{{$i}}</td>
-                <td class="data-pp"><img src="{{'/storage/'.$item->foto}}"></td>
+                <td class="data-pp"><img src="{{'/storage/'.$item->foto}}" style="cursor: zoom-in" onclick="preview('{{$item->foto}}')"></td>
                 <td>{{$item->nik}}</td>
                 <td>{{$item->nama}}</td>
                 <td>{{$item->alamat}}</td>
@@ -64,7 +64,7 @@
         @endforeach
     </table>
     <div class="pagination">
-        <a href="{{$masyarakat->previousPageUrl()}}" class="prev round {{$masyarakat->onFirstPage()? 'disable':''}}"><i class="icofont-arrow-left"></i></a>
+        <a href="{{$masyarakat->previousPageUrl()}}" class="prev round {{$masyarakat->onFirstPage()? 'disable':''}}" ><i class="icofont-arrow-left"></i></a>
         <a href="{{$masyarakat->nextPageUrl()}}" class="next round {{$masyarakat->hasMorePages()? '':'disable'}}"><i class="icofont-arrow-right"></i></a>
     </div>
 </div>
@@ -94,6 +94,7 @@
     font-size: 1rem
 }
 .modalBlur{
+    cursor: pointer;
     display: none;
     position: absolute;
     top: 0;
@@ -101,8 +102,8 @@
     width: 100vw;
     height: 100vh;
     z-index: 22;
-    backdrop-filter: blur(3px);
-    background: #4444442d;
+    backdrop-filter: blur(4px);
+    background: #2727279c;
 }
 .action{
     width: 300px;

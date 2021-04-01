@@ -16,9 +16,9 @@
         @endif
         @foreach ($pengaduan as $item)
             <div class="reportCard round">
-                <div class="reportPic" style="{{'background-image:url(/storage/'.$item->foto.')'}}"></div>
+                <div class="reportPic" style="{{'background-image:url(/storage/'.$item->foto.')'}}" onclick="preview('{{$item->foto}}')"></div>
                 <div class="profil">
-                    <div class="pelapor_pp" style="{{'background-image:url(/storage/'.$item->user->foto.')'}}">
+                    <div class="pelapor_pp" onclick="preview('{{$item->user->foto}}')" style="{{'background-image:url(/storage/'.$item->user->foto.')'}}">
                     </div>
                     <span class="pelapor_nama bold">{{$item->user->nama}}</span>
                     <span class="pelapor_tanggal">{{$item->created_at->isoFormat('dddd, D MMMM Y H:MM')}}</span>
@@ -142,6 +142,15 @@
         background-position: center;
         background-color: #eef5ff;
         height: 200px;
+        cursor: zoom-in
     }
+
+
 </style>
+@endsection
+
+@section('script')
+<script>
+
+</script>
 @endsection

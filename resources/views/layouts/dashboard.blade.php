@@ -106,6 +106,14 @@
             background: #293B5A;
 
         }
+        .flair{
+            position: absolute;
+            background: #EB4E36;
+            color: #fff;
+            padding: 0 6px;
+            right: 1.2rem;
+            border-radius: 4px
+        }
         .content{
             background: #fff;
             width: 100%;
@@ -145,19 +153,30 @@
             display: inline-block;
             margin-right: 2rem;
         }
+        .dash{
+            position: relative;
+        }
         </style>
 
     @yield('style')
 </head>
 <body id="body">
+    <div id="imgpreviewblur" onclick="closePreview()"></div>
+    <img id="imgpreview">
     <p class="copyright">© Kelompok 7</p>
     <div class="globalContainer">
         <div class="navbar">
             <div class="pp" style="{{'background-image: url(/storage/'.Auth::user()->foto.')'}}"></div>
             <span class="username">{{ Auth::user()->username }}</span>
-            <a href="/dashboard" class="{{ Route::is('dashboard') ? 'navbar-active' : '' }}">
+            <a href="/dashboard" class="dash {{ Route::is('dashboard') ? 'navbar-active' : '' }}">
                 <i class="icofont-dashboard-web"></i>
                 <span>Dashboard</span>
+                @php
+                    $reportCount = App\Models\Pengaduan::where('status','proses')->count();
+                @endphp
+                @if ($reportCount > 0)
+                    <strong class="flair">{{$reportCount > 9? '9+': $reportCount}}</strong>
+                @endif
             </a>
             <a href="/dashboard/petugas" class="{{ Route::is('petugas') ? 'navbar-active' : '' }}">
                 <i class="icofont-tie"></i>
@@ -197,5 +216,16 @@
         </div>
     </div>
     @yield('script')
+    <script>
+        function preview(url){
+            document.getElementById('imgpreviewblur').style.display = 'inherit'
+            document.getElementById('imgpreview').src = '/storage/' + url
+            document.getElementById('imgpreview').style.display = 'inherit'
+        }
+        function closePreview(){
+            document.getElementById('imgpreviewblur').style.display = 'none'
+            document.getElementById('imgpreview').style.display = 'none'
+        }
+    </script>
 </body>
 </html>

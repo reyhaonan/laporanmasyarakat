@@ -11,7 +11,7 @@
         <input type="file" form="register" name="foto" onchange="PreviewImage()" id="foto" hidden accept="image/*">
 
         <div class="leftSide">
-            <input id="nama" type="text" class="input round @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="nama" autofocus form="register" placeholder="Nama lengkap">
+            <input id="nama" type="text" class="input round @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="off" autofocus form="register" placeholder="Nama lengkap">
 
             @error('nama')
                 <span class="invalid-feedback" role="alert">
@@ -19,14 +19,14 @@
                 </span>
             @enderror
 
-            <input id="nik" type="number" class="input round @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus form="register" placeholder="Nik">
+            <input id="nik" type="number" class="input round @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="off" autofocus form="register" placeholder="Nik">
 
             @error('nik')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
-            <input id="notelp" type="number" class="input round @error('notelp') is-invalid @enderror" name="notelp" value="{{ old('notelp') }}" required autocomplete="notelp" autofocus form="register" placeholder="Nomor telepon">
+            <input id="notelp" type="number" class="input round @error('notelp') is-invalid @enderror" name="notelp" value="{{ old('notelp') }}" required autocomplete="off" autofocus form="register" placeholder="Nomor telepon">
 
             @error('notelp')
                 <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
 
         <div class="rightSide">
 
-            <input id="username" type="text" class="input round @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus form="register" placeholder="Username">
+            <input id="username" type="text" class="input round @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="off" autofocus form="register" placeholder="Username">
 
             @error('username')
             <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
             </span>
             @enderror
 
-            <input id="password" type="password" class="input round @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" form="register" placeholder="Password">
+            <input id="password" type="password" class="input round @error('password') is-invalid @enderror" name="password" required autocomplete="off" form="register" placeholder="Password">
 
             @error('password')
             <span class="invalid-feedback" role="alert">
@@ -53,7 +53,7 @@
             </span>
             @enderror
 
-            <input id="password-confirmation" type="password" class="input round @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password" form="register" placeholder="Konfirmasi Password">
+            <input id="password-confirmation" type="password" class="input round @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="off" form="register" placeholder="Konfirmasi Password">
 
             @error('password')
             <span class="invalid-feedback" role="alert">

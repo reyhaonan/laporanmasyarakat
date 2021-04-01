@@ -53,10 +53,6 @@ class DashboardController extends Controller
         return view('tanggapan',['tanggapan' => $tanggapan]);
     }
 
-    public function editUser($id){
-
-        return view('editUser',['user' => User::find($id)]);
-    }
 
     public function createPetugas(Request $request){
         $foto_url = $request->file('foto')->store('images','public');
@@ -71,10 +67,13 @@ class DashboardController extends Controller
     }
 
     public function updateUser(Request $request,$id){
+        $user = User::find($id);
         if($request->file('foto')){
-            Storage::delete('public/'.User::find($id)->foto);
+            if($user->foto != 'images/default.jpg'){
+                Storage::delete('public/'.$user->foto);
+            }
             $foto_url = $request->file('foto')->store('images','public');
-            User::find($id)->update([
+            $user->update([
                 'nama' => $request->nama,
                 'username' => $request->username,
                 'alamat' => $request->alamat,
@@ -83,7 +82,7 @@ class DashboardController extends Controller
                 'foto' => $foto_url
                 ]);
         }else{
-            User::find($id)->update([
+            $user->update([
                 'nama' => $request->nama,
                 'username' => $request->username,
                 'alamat' => $request->alamat,
@@ -94,8 +93,11 @@ class DashboardController extends Controller
                 return redirect()->back();
     }
     public function deleteUser($id){
-        Storage::delete('public/'.User::find($id)->foto);
-        User::find($id)->delete();
+        $user = User::find($id);
+        if($user->foto != 'images/default.jpg'){
+            Storage::delete('public/'.$user->foto);
+        }
+        $user->delete();
         return redirect()->back();
     }
 }

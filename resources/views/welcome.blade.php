@@ -22,7 +22,7 @@
                 <h4 class="username black">{{$item->user->nama.'(anda)'}}</h4>
                 <p class="date">{{$item->created_at->isoFormat('dddd, D MMMM Y H:MM')}}</p>
                 @isset($item->foto)
-                <img src="{{'/storage/'.$item->foto}}" class="reportImg round">
+                <img src="{{'/storage/'.$item->foto}}" style="cursor: zoom-in" onclick="preview('{{$item->foto}}')" class="reportImg round">
                 @endisset
                 {{$item->isi_laporan}}
             </div>
