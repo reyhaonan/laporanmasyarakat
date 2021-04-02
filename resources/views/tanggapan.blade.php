@@ -1,202 +1,297 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.dashboard')
+@section('title','Data tanggapan')
 
-        <title>Dashboard Pengaduan</title>
-    <head>
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <style>
-        @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-        body {
-            background-color: #313040;
-            font-family: 'Ubuntu', sans-serif;
-        }
-        .shape {
-            overflow: hidden;
-            position: absolute;
-            left: -10px;
-            top: -10px;
-            width: 23%;
-            height: 100%;
-            background-color: #25252E;
-        }
-        .titletext {
-            margin-left: 30px;
-            margin-top: 30px;
-            font-weight: 750;
-            font-size: 25px;
-            color: white;
-        }
-        hr {
-            margin-top: -10px;
-        }
-        .adminpic {
-            margin-left: 30px;
-            margin-top: 10px;
-            display: inline-block;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover;
-            background-color: #979797
-        }
-        .username {
-            color: white;
-            margin-left: 150px;
-            margin-top: -80px;
-        }
-        .text1 {
-            position: absolute;
-            left: 30px;
-            top: 230px;;
-            font-weight: bold;
-            color: white;
-        }
-        .text2 {
-            position: absolute;
-            left: 30px;
-            top: 270px;;
-            font-weight: bold;
-            color: white;
-        }
-        .text3 {
-            position: absolute;
-            left: 30px;
-            top: 310px;;
-            font-weight: bold;
-            color: white;
-        }
-        .text4 {
-            position: absolute;
-            left: 30px;
-            top: 350px;;
-            font-weight: bold;
-            color: white;
-        }
-        .text5 {
-            position: absolute;
-            left: 30px;
-            top: 390px;;
-            font-weight: bold;
-            color: white;
-        }
-        .content {
-            position: absolute;
-            left: 350px;
-            top: 70px;
-            font-weight: bold;
-            color: white;
-            font-size: 30px;
-        }
-        .logout {
-            position: absolute;
-            right: 100px;
-        }
-        .logout button {
-            background-color: #FF6C6C;
-            height: 30px;
-            border: none;
-            border-radius: 4px;
-            font-weight: bold;
-            color: white;
-        }
-        table {
-            background-color: #54526B;
-            position: absolute;
-            top: 130px;
-            left: 350px;
-            border-radius: 4px;
-            text-align: center;
-            width: 66%;
-            border-collapse: collapse;
-            color: white;
-        }
-        th {
-            border: 5px solid #313040;
-            padding: 8px;
-        }
-        td {
-            border: 5px solid #313040;
-            border-radius: 10px;
-            padding: 5px;
-        }
-        .page {
-            position: absolute;
-            right: 150px;
-            top: 550px;
-            font-size: 16px;
-            color: white;
-        }
-        .triangle-right {
-            position: absolute;
-            left: 30px;
-            bottom: 10px;
-	        width: 0;
-	        height: 0;
-	        border-top: 15px solid transparent;
-	        border-left: 25px solid white;
-	        border-bottom: 15px solid transparent;
-            border-radius: 6px;
-        }
-        .triangle-left {
-            position: absolute;
-            right: 30px;
-            bottom: 10px;
-	        width: 0;
-	        height: 0;
-	        border-top: 15px solid transparent;
-	        border-right: 25px solid white;
-	        border-bottom: 15px solid transparent;
-            border-radius: 6px;
-        }
-        </style>
-    </head>
-    <body>
+@section('pageInfo','Edit/hapus data tanggapan!')
 
-        <div class="shape"><p class="titletext">ADMINISTRATOR</p>
-        <hr>
-            <div class="adminpic" style="{{'background-image:url('.asset('storage/'.Auth::user()->foto).')'}}"></div>
-            <p class="username">Selamat datang,<br><span id="logged-in-user">{{Auth::user()->nama}}</span></p> <!-- logged-in-user buat nama adminnya btw -->
-            <a href="/dashboard"><p class="text1">Dashboard</p></a>
-            <a href="/dashboard/petugas"><p class="text2">Data Petugas</p></a>
-            <a href="/dashboard/masyarakat"><p class="text3">Data Masyarakat</p></a>
-            <a href="/dashboard/pengaduan"><p class="text4">Data Pengaduan</p></a>
-            <a href="/dashboard/tanggapan"><p class="text5">Data Tanggapan</p></a>
-        </div>
-        <div class="content">Tanggapan</div>
-        <div class="table">
-            <table>
-            <tr>
-                <th>Nama pengadu</th>
-                <th>Pengaduan</th>
-                <th>Tanggapan</th>
-                <th>Petugas</th>
-                <th>Tgl Tanggapan</th>
-                <th>Aksi</th>
-            </tr>
-            @foreach ($tanggapan as $item)
-            <tr>
-                <td>{{$item->pengaduan->user->nama}}</td>
-                <td>{{$item->pengaduan->isi_laporan}}</td>
-                <td>{{$item->tanggapan}}</td>
+@section('body')
+<div class="modalBlur" onclick="cancelModal()" id="modalBlur"></div>
+<div class="modal round" id="modal">
+    <form method="POST" action="/tanggapan/update" id="editUser" enctype="multipart/form-data">@csrf</form>
+
+    <textarea name="tanggapan" class="textarea round" placeholder="Isi tanggapan" id="tanggapan" form="editUser"></textarea>
+
+
+    <button type="submit" class="submit round" id="submit" form="editUser">
+        Update
+    </button>
+</div>
+<div class="container">
+    <table class="table">
+        <tr class="table-head">
+            <th>no.</th>
+            <th>Foto pengaduan</th>
+            <th>Nama petugas</th>
+            <th style="width: 20%">Isi tanggapan</th>
+            <th style="width: 20%">Isi laporan</th>
+            <th>Tanggal dibuat</th>
+            <th class="action"></th>
+        </tr>
+        @php
+            $i = 1;
+        @endphp
+
+        @if (!$tanggapan->count())
+        <tr><td class="empty" colspan="8">
+            <div class="emptyState">
+                <img src="/empty.png" alt="">
+                <p>
+                    Tidak ada Data!
+                </p>
+            </div>
+        </td></tr>
+        @endif
+
+        @foreach ($tanggapan as $item)
+            <tr class="data">
+                <td style="width:10px">{{$i}}</td>
+                <td class="data-pp"><img src="{{'/storage/'.$item->pengaduan->foto}}" style="cursor: zoom-in" onclick="preview('{{$item->pengaduan->foto}}')"></td>
                 <td>{{$item->petugas->nama}}</td>
-                <td>{{date_format($item->created_at,"Y/m/d H:i:s")}}</td>
-                <td><button type="submit" form="{{'del'.$item->id}}" class="delete">Hapus</button>
-                    <form action="{{'/tanggapan/delete/'.$item->id}}" id="{{'del'.$item->id}}" method="post">@csrf</form>
+                <td>{{$item->tanggapan}}</td>
+                <td>{{$item->pengaduan->isi_laporan}}</td>
+                <td>{{$item->created_at->isoFormat('dddd, D MMMM Y H:MM')}}</td>
+                <td class="actionTd">
+                    <button class="edit round" onclick="editUser('{{$item->id}}','{{$item->tanggapan}}')">Edit</button>
+                    <button type="submit" class="hapus round" form="delete-{{$item->id}}">Hapus</button>
+                    <form action="/user/delete/{{$item->id}}" method="post" id="delete-{{$item->id}}">@csrf</form>
                 </td>
             </tr>
-            @endforeach
-            </table>
-        </div>
-        <div class="logout">
-            <form action="{{ route('logout') }}" method="post" id="logout">@csrf</form>
-            <button type="submit" form="logout">Log Out</button>
-        </div>
-        <div class="page">
-            <a href="" class="triangle-left"></a><p>1</p><a href="" class="triangle-right"></a>
-        </div>
-        </body>
-</html>
+            @php
+                $i++
+            @endphp
+        @endforeach
+    </table>
+    <div class="pagination">
+        <a href="{{$tanggapan->previousPageUrl()}}" class="prev round {{$tanggapan->onFirstPage()? 'disable':''}}" ><i class="icofont-arrow-left"></i></a>
+        <a href="{{$tanggapan->nextPageUrl()}}" class="next round {{$tanggapan->hasMorePages()? '':'disable'}}"><i class="icofont-arrow-right"></i></a>
+    </div>
+</div>
+@endsection
+
+@section('style')
+<style>
+.empty{
+    text-align: center;
+    padding: 2rem 0
+}
+.rightForm{
+    width: calc(100% - (3rem + (.8rem * 6) + 2rem));
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+}
+.textarea{
+    border: 1px solid #DAE3EB;
+    resize: vertical;
+    margin-top: .5rem;
+    width: 100%;
+    min-height: 100px;
+    max-height: 400px;
+    padding: .6rem .8rem;
+    color: #6c7885;
+    font-size: 1rem
+}
+.textarea::placeholder{
+    color: #c8d1da;
+    font-size: 1rem
+}
+.modalBlur{
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 22;
+    backdrop-filter: blur(4px);
+    background: #2727279c;
+}
+.action{
+    width: 300px;
+    text-align: right
+}
+.actionTd{
+    text-align: right
+}
+.modal{
+    display: none;
+    z-index: 23;
+    background: #fff;
+    padding: 1rem;
+    flex-wrap: wrap;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%)
+}
+.edit{
+    padding: .6rem .8rem;
+    background: #f0d646;
+    border: none;
+    color: #000;
+    cursor: pointer;
+}
+.hapus{
+    padding: .6rem .8rem;
+    background: #eb4e36;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+.input{
+    border: 1px solid #DAE3EB;
+    padding: .6rem .8rem;
+    color: #6c7885;
+    font-size: 1rem;
+    margin: .5rem 0
+}
+.is-invalid{
+    border: 1px solid #eb4e36
+}
+.is-invalid::placeholder{
+    color: #e9a095 !important;
+}
+.input::placeholder{
+    color: #c8d1da;
+    font-size: 1rem
+}
+.submit{
+    border: none;
+    color: #fff;
+    background: #eb4e36;
+    font-size: 1rem;
+    margin-top: .5rem;
+    margin-left: auto;
+    padding: .5rem 1rem;
+    cursor: pointer;
+}
+.modalTrigger{
+    border: none;
+    color: #fff;
+    background: #eb4e36;
+    font-size: 1rem;
+    margin-left: auto;
+    padding: .5rem 1rem;
+    cursor: pointer;
+}
+.cancel{
+    text-decoration: none;
+    color: #eb4e36;
+    text-align: center;
+    padding: .5rem;
+}
+.invalid-feedback{
+    font-size: .6rem;
+    margin-top: -.4rem;
+}
+.invalid-feedback strong{
+    color: #eb4e36 !important;
+}
+
+.pagination{
+    margin-left: auto;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+}
+.pagination a{
+    background: #eb4e36;
+    padding: .6rem .8rem;
+    text-decoration: none;
+}
+.disable{
+    background: transparent !important;
+    cursor: not-allowed;
+}
+.disable i{
+    color: #eb4e36 !important
+}
+.pagination a i{
+    color: white;
+    font-size: 1.2rem
+}
+.table{
+    border-collapse: collapse;
+    margin: 2rem;
+    width: calc(100% - 4rem);
+    text-align: left;
+    overflow: hidden;
+}
+.table-head{
+    background: #fff;
+    box-shadow: 0 2px 4px -2px #293b5ab4;
+}
+.table-head th{
+    padding: 1rem 2rem;
+    border: 1px solid #DAE3EB;
+}
+.data td{
+    border: 1px solid #f5f8fc;
+    padding: 1rem 2rem;
+}
+.data{
+    border: 1px solid #FBFCFD
+}
+.data:nth-child(odd){
+    background: #FBFCFD
+}
+.data-pp img{
+    height: 50px;
+}
+.data-pp{
+    width: 50px;
+}
+.container{
+    display: flex;
+    flex-direction: column
+}
+
+.addFoto{
+    background-color: #f4f6f8;
+    margin: .5rem 0;
+    padding: .6rem .8rem;
+    cursor: pointer;
+    height: calc(3rem + (.8rem * 6) + 2rem);
+    width: calc(3rem + (.8rem * 6) + 2rem);
+    display: flex;
+    background-size: cover;
+    background-position: center
+}
+</style>
+@endsection
+
+@section('script')
+    <script>
+        function PreviewImage() {
+            var oFReader = new FileReader();
+            oFReader.readAsDataURL(document.getElementById("foto").files[0]);
+
+            oFReader.onload = function (oFREvent) {
+                document.getElementById("uptext").innerHTML = "+ Ganti foto";
+                document.getElementById("uptext").style.color = "#fff";
+                document.getElementById("uploadLabel").style.border = "none";
+                document.getElementById("uploadLabel").style.backgroundImage = "url("+ oFREvent.target.result +")";
+            };
+        };
+
+        function openModal(){
+            document.getElementById('modalBlur').style.display = 'inherit'
+            document.getElementById('modal').style.display = 'flex'
+        }
+        function editUser(id,tanggapan){
+            document.getElementById('tanggapan').value = tanggapan
+
+            // form edit
+            document.getElementById('editUser').action = '/tanggapan/update/' + id
+            openModal()
+        }
+        function cancelModal(){
+            document.getElementById('tanggapan').value = ''
+
+            // form edit
+            document.getElementById('editUser').action = '/user/update/'
+            document.getElementById('modalBlur').style.display = 'none'
+            document.getElementById('modal').style.display = 'none'
+        }
+
+    </script>
+@endsection

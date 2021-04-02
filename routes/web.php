@@ -44,6 +44,7 @@ Route::middleware(['petugas'])->group(function () {
     Route::post('/user/delete/{id}',[App\Http\Controllers\DashboardController::class, 'deleteUser']);
     Route::post('/pengaduan/delete/{id}',[App\Http\Controllers\PengaduanController::class, 'destroy']);
     Route::post('/tanggapan/delete/{id}',[App\Http\Controllers\TanggapanController::class, 'destroy']);
+    Route::post('/tanggapan/update/{id}',[App\Http\Controllers\TanggapanController::class, 'update']);
     Route::post('/user/update/{id}',[App\Http\Controllers\DashboardController::class, 'updateUser']);
     Route::post('/user/create',[App\Http\Controllers\DashboardController::class, 'createPetugas']);
 

@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title','Data petugas')
+@section('title','Data masyarakat')
 
 @section('pageInfo','Edit/hapus data masyarakat!')
 

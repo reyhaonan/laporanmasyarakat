@@ -77,9 +77,13 @@ class TanggapanController extends Controller
      * @param  \App\Models\Tanggapan  $tanggapan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tanggapan $tanggapan)
+    public function update(Request $request, $id)
     {
-        //
+        Tanggapan::find($id)->update([
+            'tanggapan' => $request->tanggapan
+        ]);
+
+        return redirect()->back();
     }
 
     /**
