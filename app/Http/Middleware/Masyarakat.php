@@ -17,8 +17,10 @@ class Masyarakat
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->level != 'masyarakat') {
-            return 'false';
+        if(Auth::check()){
+            if (Auth::user()->level != 'masyarakat') {
+                return redirect('/dashboard');
+            }
         }
         return $next($request);
     }

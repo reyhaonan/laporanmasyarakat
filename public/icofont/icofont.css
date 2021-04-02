@@ -98,6 +98,11 @@ url("./fonts/icofont.woff") format("woff");
   content: "\ea5d";
 }
 
+.icofont-download:before
+{
+  content: "\ef08";
+}
+
 .icofont-xs
 {
   font-size: .5em;

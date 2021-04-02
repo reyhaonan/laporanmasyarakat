@@ -156,6 +156,15 @@
         .dash{
             position: relative;
         }
+
+        .cetakPdf{
+            margin-left: auto;
+            background: #fcb636;
+            color: #000;
+            text-decoration: none;
+            padding: .4rem .6rem;
+
+        }
         </style>
 
     @yield('style')
@@ -211,6 +220,7 @@
 
                 <h2 class="black">{{ ucfirst(trans(Route::currentRouteName()))}}</h2>
                 <span class="pageInfo">@yield('pageInfo')</span>
+                <a href="/cetak_pdf" class="cetakPdf round"><i class="icofont-download" style="color: #000"></i>  Download Laporan</a>
             </div>
             @yield('body')
         </div>

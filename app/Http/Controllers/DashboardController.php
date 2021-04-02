@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
+use PDF;
+
 class DashboardController extends Controller
 {
     /**
@@ -99,5 +101,15 @@ class DashboardController extends Controller
         }
         $user->delete();
         return redirect()->back();
+    }
+
+
+
+
+    public function cetakPdf(){
+        $pengaduan = Pengaduan::all();
+
+    	$pdf = PDF::loadview('pengaduan_pdf',['pengaduan'=>$pengaduan]);
+    	return $pdf->download('laporan-pengaduan-'.date("dmY").'.pdf');
     }
 }

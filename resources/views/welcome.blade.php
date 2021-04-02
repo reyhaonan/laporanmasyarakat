@@ -81,17 +81,8 @@
                 </label>
                 <input type="file" form="ajukan" name="foto" onchange="PreviewImage()" id="foto" hidden accept="image/*">
                 <textarea name="isi_laporan" class="round" placeholder="Tulis isi laporan disini" form="ajukan" required></textarea>
-                @auth()
-                    @if (Auth::user()->level == 'petugas')
-                        <button type="submit" form="ajukan" class="submitbtn round black disabled" disabled>Kirim laporan</button>
-                    @else
-                        <button type="submit" form="ajukan" class="submitbtn round black">Kirim laporan</button>
-                    @endif
-                @endauth
 
-                @guest()
-                    <button type="submit" form="ajukan" class="submitbtn round black" disabled>Kirim laporan</button>
-                @endguest
+                <button type="submit" form="ajukan" class="submitbtn round black">Kirim laporan</button>
 
                 @auth
                 <form action="/laporkan" method="POST" id="ajukan" enctype="multipart/form-data">@csrf</form>
