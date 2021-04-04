@@ -21,15 +21,16 @@ Route::get('/', function () {
     }
     return view('welcome');
 })->middleware('masyarakat');
+
+
 Route::get('/gate', function () {
     if(Auth::user()->level == 'masyarakat')return redirect('/');
     else if(Auth::user()->level == 'petugas')return redirect('/dashboard');
-    // else if(Auth::user()->level == 'masyarakat')return redirect('/');
-});
+})->middleware('auth');
 
 Auth::routes();
 
-//login only
+
 Route::post('/laporkan',[App\Http\Controllers\PengaduanController::class, 'store'])->middleware('auth');
 
 

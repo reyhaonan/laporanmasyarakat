@@ -56,40 +56,6 @@ class PengaduanController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pengaduan  $pengaduan
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pengaduan $pengaduan)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pengaduan  $pengaduan
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pengaduan $pengaduan)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pengaduan  $pengaduan
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Pengaduan  $pengaduan
