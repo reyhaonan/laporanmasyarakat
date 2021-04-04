@@ -93,7 +93,7 @@
     .registertext{
         position: absolute;
         top: -3rem;
-        left: 40%;
+        left: 50%;
         transform: translateX(-50%);
     }
     .leftSide{
