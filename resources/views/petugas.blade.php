@@ -45,6 +45,11 @@
     </button>
 </div>
 <div class="container">
+    <form action="/dashboard/petugas" method="get" id="search"></form>
+    <div class="searchContainer round">
+        <input type="text" name="search" value="{{Request::get('search')}}" class="searchInput round" placeholder="Cari data petugas.." form="search">
+        <button type="submit" form="search" class="searchSubmit"><i class="icofont-search"></i></button>
+    </div>
     <table class="table">
         <tr class="table-head">
             <th>no.</th>
@@ -207,6 +212,7 @@
     border-collapse: collapse;
     margin: 2rem;
     width: calc(100% - 4rem);
+    margin-top: 1rem;
     text-align: left;
     overflow: hidden;
 }
@@ -251,6 +257,33 @@
     background-size: cover;
     background-position: center
 }
+
+.searchContainer{
+    display: flex;
+    margin: 2rem;
+    margin-bottom: 0;
+    margin-right: auto;
+    border: 1px solid #DAE3EB;
+}
+.searchContainer input{
+    border: none;
+    width: 300px;
+    padding: .6rem .8rem;
+    color: #6c7885;
+    font-size: 1rem;
+
+}
+.searchContainer input::placeholder{
+    color: #c8d1da;
+    font-size: 1rem
+}
+.searchContainer button{
+    background: none;
+    border: none;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
 </style>
 @endsection
 

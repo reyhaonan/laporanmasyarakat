@@ -33,14 +33,29 @@ class DashboardController extends Controller
         $pengaduan = Pengaduan::where('status','proses')->orderBy('created_at','desc')->get();
         return view('dashboard',['pengaduan' => $pengaduan]);
     }
-    public function petugas()
+    public function petugas(Request $request)
     {
-        $petugas = User::where('level','petugas')->paginate(10);
+        $petugas = null;
+        if(isset($request->search)){
+            $petugas = User::where('nama','like','%'.$request->search.'%')
+            ->orWhere('username','like','%'.$request->search.'%')
+            ->paginate(10);
+        }else{
+            $petugas = User::where('level','petugas')->paginate(10);
+        }
         return view('petugas',["petugas" => $petugas]);
     }
-    public function masyarakat()
+    public function masyarakat(Request $request)
     {
-        $masyarakat = User::where('level','masyarakat')->paginate(10);
+        $masyarakat = null;
+        if(isset($request->search)){
+            $masyarakat = User::where('nama','like','%'.$request->search.'%')
+            ->orWhere('nik','like','%'.$request->search.'%')
+            ->orWhere('notelp','like','%'.$request->search.'%')
+            ->paginate(10);
+        }else{
+            $masyarakat = User::where('level','masyarakat')->paginate(10);
+        }
         // dd($masyarakat);
         return view('masyarakat',['masyarakat' => $masyarakat]);
     }

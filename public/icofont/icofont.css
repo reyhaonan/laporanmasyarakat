@@ -103,6 +103,11 @@ url("./fonts/icofont.woff") format("woff");
   content: "\ef08";
 }
 
+.icofont-search:before
+{
+  content: "\ed1b";
+}
+
 .icofont-xs
 {
   font-size: .5em;
