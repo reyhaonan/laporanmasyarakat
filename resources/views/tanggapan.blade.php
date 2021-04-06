@@ -6,12 +6,12 @@
 @section('body')
 <div class="modalBlur" onclick="cancelModal()" id="modalBlur"></div>
 <div class="modal round" id="modal">
-    <form method="POST" action="/tanggapan/update" id="editUser" enctype="multipart/form-data">@csrf</form>
+    <form method="POST" action="/tanggapan/update" id="editTanggapan" enctype="multipart/form-data">@csrf</form>
 
-    <textarea name="tanggapan" class="textarea round" placeholder="Isi tanggapan" id="tanggapan" form="editUser"></textarea>
+    <textarea name="tanggapan" class="textarea round" placeholder="Isi tanggapan" id="tanggapan" form="editTanggapan"></textarea>
 
 
-    <button type="submit" class="submit round" id="submit" form="editUser">
+    <button type="submit" class="submit round" id="submit" form="editTanggapan">
         Update
     </button>
 </div>
@@ -50,9 +50,9 @@
                 <td>{{$item->pengaduan->isi_laporan}}</td>
                 <td>{{$item->created_at->isoFormat('dddd, D MMMM Y H:MM')}}</td>
                 <td class="actionTd">
-                    <button class="edit round" onclick="editUser('{{$item->id}}','{{$item->tanggapan}}')">Edit</button>
+                    <button class="edit round" onclick="editTanggapan('{{$item->id}}','{{$item->tanggapan}}')">Edit</button>
                     <button type="submit" class="hapus round" form="delete-{{$item->id}}">Hapus</button>
-                    <form action="/user/delete/{{$item->id}}" method="post" id="delete-{{$item->id}}">@csrf</form>
+                    <form action="/tanggapan/delete/{{$item->id}}" method="post" id="delete-{{$item->id}}">@csrf</form>
                 </td>
             </tr>
             @php
@@ -277,18 +277,18 @@
             document.getElementById('modalBlur').style.display = 'inherit'
             document.getElementById('modal').style.display = 'flex'
         }
-        function editUser(id,tanggapan){
+        function editTanggapan(id,tanggapan){
             document.getElementById('tanggapan').value = tanggapan
 
             // form edit
-            document.getElementById('editUser').action = '/tanggapan/update/' + id
+            document.getElementById('editTanggapan').action = '/tanggapan/update/' + id
             openModal()
         }
         function cancelModal(){
             document.getElementById('tanggapan').value = ''
 
             // form edit
-            document.getElementById('editUser').action = '/user/update/'
+            document.getElementById('editTanggapan').action = '/Tanggapan/update/'
             document.getElementById('modalBlur').style.display = 'none'
             document.getElementById('modal').style.display = 'none'
         }
